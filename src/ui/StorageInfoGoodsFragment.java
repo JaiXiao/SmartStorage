@@ -13,14 +13,14 @@ import base.BaseFragment;
 
 public class StorageInfoGoodsFragment extends BaseFragment{
 
-	private TextView textshidu;
+	private TextView tv_goods;
 	
 	@Override
 	public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View view = inflater.inflate(R.layout.activity_main, null);
+		View view = inflater.inflate(R.layout.fragment_storagesetting, null);
 		
-		textshidu = (TextView)view.findViewById(R.id.textshidu);
+		tv_goods = (TextView)view.findViewById(R.id.tv_goods);
 		return view;
 	}
 

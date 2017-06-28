@@ -2,7 +2,12 @@ package ui;
 
 import android_serialport_api.demo.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import adapter.MainPagerAdapter;
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
@@ -21,6 +26,8 @@ public class testActivity extends BaseActivity{
 	private LinearLayout ll_tab_setting;
 	private LinearLayout ll_tab_goods;
 	
+	private List<Fragment> fragments;
+	private MainPagerAdapter adapter;
 	@Override
 	public void initView() {
 		setContentView(R.layout.activity_test);
@@ -65,7 +72,16 @@ public class testActivity extends BaseActivity{
 
 	@Override
 	public void initData() {
-		
+		fragments = new ArrayList<Fragment>();
+
+		StorageInfoFragment fragment1 = new StorageInfoFragment();
+		StorageInfoGoodsFragment fragment2 = new StorageInfoGoodsFragment();
+		StorageSettingFragment fragment3 = new StorageSettingFragment();
+		fragments.add(fragment1);
+		fragments.add(fragment2);
+		fragments.add(fragment3);
+		adapter = new MainPagerAdapter(getSupportFragmentManager(), fragments);
+		viewPager.setAdapter(adapter);
 	}
 
 	@Override

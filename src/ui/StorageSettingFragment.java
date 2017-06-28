@@ -4,15 +4,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android_serialport_api.demo.R;
 import base.BaseFragment;
 
 public class StorageSettingFragment extends BaseFragment{
 
+	private TextView tv_setting;
 	@Override
 	public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		return null;
+		View view = inflater.inflate(R.layout.fragment_storagesetting, null);
+		
+		tv_setting = (TextView)view.findViewById(R.id.tv_setting);
+		return view;
 	}
 
 	@Override
