@@ -1,10 +1,10 @@
 /*****************************************************************
-Œƒº˛√˚£∫MainActivity.java
-∞Ê±æ∫≈£∫v1.0
-¥¥Ω®»’∆⁄£∫2013-5-17
-◊˜’ﬂ£∫¥Û¡¨∑…œËø∆ºº”–œﬁπ´Àæ, www.fesxp.com
-÷˜“™∫Ø ˝√Ë ˆ£∫onCreate(Bundle savedInstanceState)ªÓ∂Ø¿‡µƒ»Îø⁄∫Ø ˝£ª
-–ﬁ∏ƒ»’÷æ£∫ Œﬁ
+????√??∫MainActivity.java
+∞?±?∫≈?∫v1.0
+??Ω??’???∫2013-5-17
+??’??∫???¨∑…??????”–??π???, www.fesxp.com
+÷?“?∫???√????∫onCreate(Bundle savedInstanceState)????????????∫?????
+–?∏??’÷??∫ ??
 *****************************************************************/
 package android_serialport_api.demo;
 import android.os.Bundle;
@@ -47,9 +47,9 @@ public class MainActivity extends SerialPortActivity {
 
 
 /**************************************************************************
-    π¶ƒ‹√Ë ˆ£∫ µ¿˝ªØonDataReceived∫Ø ˝”√”⁄¥Æø⁄Ω” ’–≈œ¢µƒœ‘ æ
-     ‰»Î≤Œ ˝£∫final byte[] buffer¥Æø⁄Ω” ’◊÷∑˚¥Æ£¨final int size◊÷∑˚¥Æ¥Û–°
-     ‰≥ˆ≤Œ ˝£∫Œﬁ
+    π???√????∫??????onDataReceived∫???”√”?????Ω”?’–≈?????‘??
+    ?‰??≤????∫final byte[] buffer????Ω”?’?÷∑????¨final int size?÷∑?????–°
+    ?‰≥?≤????∫??
 *************************************************************************/
     
     protected void onDataReceived(final String message) {
@@ -139,7 +139,7 @@ public class MainActivity extends SerialPortActivity {
 							textguangzhao.setText("光照： NO");
 							RatingBarguangzhao.setRating(0);
 						}
-						//*******ø…¿©’π**********
+						//*******?…??’π**********
 					}
 					
 				}
