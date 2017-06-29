@@ -103,4 +103,10 @@ public class testActivity extends BaseActivity{
 		
 	}
 
+	@Override
+	protected void onDataReceived(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

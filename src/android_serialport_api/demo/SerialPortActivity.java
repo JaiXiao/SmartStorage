@@ -39,10 +39,11 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android_serialport_api.SerialPort;
 import android_serialport_api.demo.R;
 
-public abstract class SerialPortActivity extends Activity {
+public abstract class SerialPortActivity extends FragmentActivity {
 
 	protected Application mApplication;
 	protected SerialPort mSerialPort;
