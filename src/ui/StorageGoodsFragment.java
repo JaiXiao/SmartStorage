@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android_serialport_api.demo.R;
 import base.BaseFragment;
 
-public class StorageInfoGoodsFragment extends BaseFragment{
+public class StorageGoodsFragment extends BaseFragment{
 
 	private TextView tv_goods;
 	

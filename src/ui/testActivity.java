@@ -75,7 +75,7 @@ public class testActivity extends BaseActivity{
 		fragments = new ArrayList<Fragment>();
 
 		StorageInfoFragment fragment1 = new StorageInfoFragment();
-		StorageInfoGoodsFragment fragment2 = new StorageInfoGoodsFragment();
+		StorageGoodsFragment fragment2 = new StorageGoodsFragment();
 		StorageSettingFragment fragment3 = new StorageSettingFragment();
 		fragments.add(fragment1);
 		fragments.add(fragment2);
