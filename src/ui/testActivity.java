@@ -88,6 +88,7 @@ public class testActivity extends BaseActivity{
 		StorageInfoFragment fragment1 = new StorageInfoFragment();
 		StorageGoodsFragment fragment2 = new StorageGoodsFragment();
 		StorageSettingFragment fragment3 = new StorageSettingFragment();
+		
 		infoView = fragment1.getView();
 		textshidu = (TextView)infoView.findViewById(R.id.textshidu);
         textwendu = (TextView)infoView.findViewById(R.id.textwendu);

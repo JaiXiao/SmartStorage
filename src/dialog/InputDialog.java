@@ -24,8 +24,8 @@ public class InputDialog extends BaseDialog {
 		this.onInputDialogListener = onInputDialogListener;
 	}
 	
-	public static void showDialog(Context context, String title, OnInputDialogListener onInputDialogListener){
-		InputDialog dialog = new InputDialog(context, title, onInputDialogListener);
+	public static void showDialog(Context context, String title, OnInputDialogListener onInputDialogListener2){
+		InputDialog dialog = new InputDialog(context, title, onInputDialogListener2);
 		
 		dialog.setView(new EditText(context));
 		dialog.show();

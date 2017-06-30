@@ -1,15 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    android:background="#fff">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-   <TextView
-      android:id="@+id/tv_setting"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="设置"
-      android:textColor="#000"
-      android:textSize="14sp" />
+    <Button 
+        android:id="@+id/btn_addgoods"
+	    android:layout_width="match_parent"
+	    android:layout_height="40dp"
+	    android:text="添加货物"
+        />
+    <ListView
+	    android:id="@+id/lv_goods"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	>
+	</ListView>
 
-</RelativeLayout>
+</LinearLayout>
