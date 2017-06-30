@@ -1,4 +1,4 @@
-package com.yang.bean;
+package bean;
 
 
 import android.database.Cursor;

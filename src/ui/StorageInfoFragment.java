@@ -21,7 +21,7 @@ public class StorageInfoFragment extends BaseFragment{
 	@Override
 	public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View view = inflater.inflate(R.layout.fragment_storageinfo, null);
+		View view = inflater.inflate(R.layout.fragment_storage_info, null);
 		textshidu = (TextView)view.findViewById(R.id.textshidu);
         textwendu=(TextView)view.findViewById(R.id.textwendu);
         textyanwu=(TextView)view.findViewById(R.id.textyanwu);

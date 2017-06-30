@@ -11,7 +11,9 @@
             backward-compatibility can go here.
         -->
     </style>
-
+	<style name="BaseDialog" parent="@android:style/Theme.Dialog">
+	    <item name="android:windowBackground">@drawable/bg_dialog</item>
+	</style>
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->

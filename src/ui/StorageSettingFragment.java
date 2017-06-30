@@ -14,7 +14,7 @@ public class StorageSettingFragment extends BaseFragment{
 	@Override
 	public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View view = inflater.inflate(R.layout.fragment_storagesetting, null);
+		View view = inflater.inflate(R.layout.fragment_storage_setting, null);
 		
 		tv_setting = (TextView)view.findViewById(R.id.tv_setting);
 		return view;

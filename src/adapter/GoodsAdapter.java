@@ -1,10 +1,6 @@
-package com.yang.adapter;
+package adapter;
 
 import java.util.List;
-
-import com.yang.adapter.GoodsListAdapter.ViewHolder;
-import com.yang.bean.Good;
-import com.yang.storagegoods.R;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -12,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
+import android_serialport_api.demo.R;
+import bean.Good;
 
 public class GoodsAdapter extends CursorAdapter{
 

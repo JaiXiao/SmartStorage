@@ -10,9 +10,11 @@ package android_serialport_api.demo;
 public final class R {
     public static final class anim {
         public static final int alpha=0x7f040000;
-        public static final int rotate=0x7f040001;
-        public static final int scale=0x7f040002;
-        public static final int translate=0x7f040003;
+        public static final int pop_in_anim=0x7f040001;
+        public static final int pop_out_anim=0x7f040002;
+        public static final int rotate=0x7f040003;
+        public static final int scale=0x7f040004;
+        public static final int translate=0x7f040005;
     }
     public static final class array {
         public static final int baudrates_name=0x7f060000;
@@ -118,30 +120,50 @@ public final class R {
     public static final class drawable {
         public static final int barcolor=0x7f020000;
         public static final int bg=0x7f020001;
-        public static final int bg_chaoshengbo=0x7f020002;
-        public static final int bg_shidu=0x7f020003;
-        public static final int guandeng=0x7f020004;
-        public static final int guangqiang=0x7f020005;
-        public static final int guangzhao=0x7f020006;
-        public static final int ic_action_search=0x7f020007;
-        public static final int icon=0x7f020008;
-        public static final int kaideng=0x7f020009;
-        public static final int main_icon_check=0x7f02000a;
-        public static final int main_icon_normal=0x7f02000b;
-        public static final int myprogressbar=0x7f02000c;
-        public static final int nocolor=0x7f02000d;
-        public static final int progress=0x7f02000e;
-        public static final int s1=0x7f02000f;
-        public static final int s2=0x7f020010;
-        public static final int secondary=0x7f020011;
-        public static final int sh1=0x7f020012;
-        public static final int shengyin=0x7f020013;
+        public static final int bg_btn_normal=0x7f020002;
+        public static final int bg_btn_pressed=0x7f020003;
+        public static final int bg_chaoshengbo=0x7f020004;
+        public static final int bg_dialog=0x7f020005;
+        public static final int bg_left_btn_normal=0x7f020006;
+        public static final int bg_left_btn_press=0x7f020007;
+        public static final int bg_right_btn_normal=0x7f020008;
+        public static final int bg_right_btn_press=0x7f020009;
+        public static final int bg_shidu=0x7f02000a;
+        public static final int guandeng=0x7f02000b;
+        public static final int guangqiang=0x7f02000c;
+        public static final int guangzhao=0x7f02000d;
+        public static final int ic_action_search=0x7f02000e;
+        public static final int ic_launcher=0x7f02000f;
+        public static final int icon=0x7f020010;
+        public static final int icon_private_message_delete=0x7f020011;
+        public static final int kaideng=0x7f020012;
+        public static final int main_icon_check=0x7f020013;
+        public static final int main_icon_normal=0x7f020014;
+        public static final int myprogressbar=0x7f020015;
+        public static final int nocolor=0x7f020016;
+        public static final int progress=0x7f020017;
+        public static final int s1=0x7f020018;
+        public static final int s2=0x7f020019;
+        public static final int secondary=0x7f02001a;
+        public static final int selector_btn_bg=0x7f02001b;
+        public static final int selector_left_btn_bg=0x7f02001c;
+        public static final int selector_right_btn_bg=0x7f02001d;
+        public static final int sh1=0x7f02001e;
+        public static final int shengyin=0x7f02001f;
     }
     public static final class id {
+        public static final int bt_dialog_cancel=0x7f0b0011;
+        public static final int bt_dialog_confirm=0x7f0b0012;
+        public static final int bt_inputdialog_cancel=0x7f0b0018;
+        public static final int bt_inputdialog_confirm=0x7f0b0019;
+        public static final int btn_itemdelete=0x7f0b0013;
+        public static final int et_inputdialog_message_name=0x7f0b0015;
+        public static final int et_inputdialog_message_type=0x7f0b0016;
+        public static final int et_inputdialog_message_value=0x7f0b0017;
         public static final int ll_tab_goods=0x7f0b000d;
         public static final int ll_tab_info=0x7f0b0009;
         public static final int ll_tab_setting=0x7f0b000b;
-        public static final int menu_settings=0x7f0b0012;
+        public static final int menu_settings=0x7f0b0021;
         public static final int progress_horizontal_guangzhao=0x7f0b0006;
         public static final int progress_horizontal_shidu=0x7f0b0000;
         public static final int progress_horizontal_wendu=0x7f0b0002;
@@ -150,9 +172,16 @@ public final class R {
         public static final int textshidu=0x7f0b0003;
         public static final int textwendu=0x7f0b0001;
         public static final int textyanwu=0x7f0b0005;
-        public static final int tv_goods=0x7f0b000f;
-        public static final int tv_info=0x7f0b0010;
-        public static final int tv_setting=0x7f0b0011;
+        public static final int tv_delete=0x7f0b0020;
+        public static final int tv_dialog_message=0x7f0b0010;
+        public static final int tv_dialog_title=0x7f0b000f;
+        public static final int tv_good_date=0x7f0b001c;
+        public static final int tv_good_name=0x7f0b001d;
+        public static final int tv_good_type=0x7f0b001e;
+        public static final int tv_good_value=0x7f0b001f;
+        public static final int tv_goods=0x7f0b001a;
+        public static final int tv_inputdialog_title=0x7f0b0014;
+        public static final int tv_setting=0x7f0b001b;
         public static final int tv_tab_goods=0x7f0b000e;
         public static final int tv_tab_info=0x7f0b000a;
         public static final int tv_tab_setting=0x7f0b000c;
@@ -161,9 +190,14 @@ public final class R {
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int activity_test=0x7f030001;
-        public static final int fragment_storage_goods=0x7f030002;
-        public static final int fragment_storageinfo=0x7f030003;
-        public static final int fragment_storagesetting=0x7f030004;
+        public static final int dialog_confirm=0x7f030002;
+        public static final int dialog_delete=0x7f030003;
+        public static final int dialog_input=0x7f030004;
+        public static final int fragment_storage_goods=0x7f030005;
+        public static final int fragment_storage_info=0x7f030006;
+        public static final int fragment_storage_setting=0x7f030007;
+        public static final int item_goods_list=0x7f030008;
+        public static final int layout_long_click_dialog=0x7f030009;
     }
     public static final class menu {
         public static final int activity_main=0x7f0a0000;
@@ -197,7 +231,10 @@ public final class R {
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f090001;
+        public static final int AppTheme=0x7f090002;
+        public static final int BaseDialog=0x7f090001;
+        public static final int PopAnimStyle=0x7f090004;
+        public static final int myLongClickDialogStyle=0x7f090003;
     }
     public static final class xml {
         public static final int serial_port_preferences=0x7f050000;

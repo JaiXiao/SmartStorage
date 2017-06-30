@@ -1,12 +1,11 @@
-package com.yang.dialog;
-
-import com.yang.storagegoods.R;
+package dialog;
 
 import android.content.Context;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android_serialport_api.demo.R;
 
 public class InputDialog extends BaseDialog {
 

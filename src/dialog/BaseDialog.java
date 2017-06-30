@@ -1,11 +1,11 @@
-package com.yang.dialog;
+package dialog;
 
-import com.yang.storagegoods.R;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android_serialport_api.demo.R;
 
 public abstract class BaseDialog extends AlertDialog implements android.view.View.OnClickListener{
 
@@ -28,7 +28,6 @@ public abstract class BaseDialog extends AlertDialog implements android.view.Vie
 	public abstract void initData();
 	public abstract void processClick(View v);
 	
-	@Override
 	public void onClick(View v) {
 		processClick(v);
 		

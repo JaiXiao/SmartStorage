@@ -18,7 +18,7 @@ public class StorageGoodsFragment extends BaseFragment{
 	@Override
 	public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View view = inflater.inflate(R.layout.fragment_storagesetting, null);
+		View view = inflater.inflate(R.layout.fragment_storage_setting, null);
 		
 		tv_goods = (TextView)view.findViewById(R.id.tv_goods);
 		return view;

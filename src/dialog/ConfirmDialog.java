@@ -1,12 +1,11 @@
-package com.yang.dialog;
+package dialog;
 
-
-import com.yang.storagegoods.R;
 
 import android.content.Context;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android_serialport_api.demo.R;
 
 public class ConfirmDialog extends BaseDialog{
 

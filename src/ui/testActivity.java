@@ -7,12 +7,14 @@ import java.util.List;
 
 import adapter.MainPagerAdapter;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import base.BaseActivity;
 
@@ -25,6 +27,15 @@ public class testActivity extends BaseActivity{
 	private LinearLayout ll_tab_info;
 	private LinearLayout ll_tab_setting;
 	private LinearLayout ll_tab_goods;
+	
+	private TextView textshidu;
+	private TextView textwendu;
+	private TextView textyanwu;
+	private ProgressBar ProgressBarshidu;
+	private ProgressBar ProgressBarwendu;
+	private ProgressBar ProgressBaryanwu;
+	
+	private View infoView;
 	
 	private List<Fragment> fragments;
 	private MainPagerAdapter adapter;
@@ -77,6 +88,14 @@ public class testActivity extends BaseActivity{
 		StorageInfoFragment fragment1 = new StorageInfoFragment();
 		StorageGoodsFragment fragment2 = new StorageGoodsFragment();
 		StorageSettingFragment fragment3 = new StorageSettingFragment();
+		infoView = fragment1.getView();
+		textshidu = (TextView)infoView.findViewById(R.id.textshidu);
+        textwendu = (TextView)infoView.findViewById(R.id.textwendu);
+        textyanwu = (TextView)infoView.findViewById(R.id.textyanwu);
+        ProgressBarshidu = (ProgressBar)infoView.findViewById(R.id.progress_horizontal_shidu);
+        ProgressBarwendu = (ProgressBar)infoView.findViewById(R.id.progress_horizontal_wendu);
+        ProgressBaryanwu = (ProgressBar)infoView.findViewById(R.id.progress_horizontal_yanwu);
+        
 		fragments.add(fragment1);
 		fragments.add(fragment2);
 		fragments.add(fragment3);
@@ -104,9 +123,89 @@ public class testActivity extends BaseActivity{
 	}
 
 	@Override
-	protected void onDataReceived(String message) {
-		// TODO Auto-generated method stub
+	protected void onDataReceived(final String message) {
+		runOnUiThread(new Runnable() {
+			
+			public void run() {
+				String sub = null;
+				int d = 0;
+				System.out.println(message);
+				System.out.println(message.length());
+				if(message == "" || message == null)
+					System.out.println("null");
+			    //judge the format of data is true or not
+				if( message.length()!= 0 && message.charAt(0)=='$' && message.charAt(2)==','
+						&& message.charAt(message.length()-1)=='#') {
+					System.out.println("the format of data is true");
+					sub = message.substring(3, message.length()-1);//select the part of data
+					d = Integer.parseInt(sub);
+					//Humidity
+					if(message.charAt(1)=='0') {
+						System.out.println("shidu = "+ sub + "%RH");
+						textshidu.setText(" Êª¶È£º "+sub + "%RH");
+						if(d>45)//the warning value(you can change it depend on situation)
+						{
+							Drawable dr=getResources().getDrawable(R.drawable.barcolor);
+							ProgressBarshidu.setProgressDrawable(dr);
+						}
+						else
+						{
+							Drawable dr=getResources().getDrawable(R.drawable.nocolor);
+							ProgressBarshidu.setProgressDrawable(dr);
+						}
+						//change the bar according to the value of data
+						ProgressBarshidu.setProgress((int) d);
+					}
+					
+					//Temperature
+					if(message.charAt(1)=='1') {
+						System.out.println("wendu = "+ sub +" ¡ãC");
+						textwendu.setText(" ÎÂ¶È£º "+sub + " ¡ãC");
+						if(d>40)//the warning value(you can change it depend on situation)
+						{
+							Drawable dr=getResources().getDrawable(R.drawable.barcolor);
+							ProgressBarwendu.setProgressDrawable(dr);
+						}
+						else
+						{
+							Drawable dr=getResources().getDrawable(R.drawable.nocolor);
+							ProgressBarwendu.setProgressDrawable(dr);
+						}
+						//change the bar according to the value of data
+						ProgressBarwendu.setProgress((int) d);
+						
+					}
+					//Smoke
+					if(message.charAt(1)=='3') {
+						System.out.println("yanwu = "+ sub);
+						textyanwu.setText(" ÑÌÎí£º "+sub + "PM");
+						if(d>30000)//the warning value(you can change it depend on situation)
+						{
+							Drawable dr=getResources().getDrawable(R.drawable.barcolor);
+							ProgressBaryanwu.setProgressDrawable(dr);
+						}
+						else
+						{
+							Drawable dr=getResources().getDrawable(R.drawable.nocolor);
+							ProgressBaryanwu.setProgressDrawable(dr);
+						}
+						//change the bar according to the value of data
+						ProgressBaryanwu.setProgress((int) d);
+					}
+					//Light
+					if(message.charAt(1)=='2') {
+
+					}
+					
+				}
+				else{
+					//if the format of data is not true(I don't know what to do )
+				}
+				
+			}
+			
+		});
 		
-	}
+    }
 
 }
