@@ -81,7 +81,9 @@ public class StorageGoodsFragment extends BaseFragment{
 	@Override
 	public void initData() {
 		// TODO Auto-generated method stub
-		
+		oh = new StorageDBOpenHelper(getActivity());
+		db = oh.getWritableDatabase();
+		setListView();
 	}
 	
 	//  删除item
@@ -108,7 +110,6 @@ public class StorageGoodsFragment extends BaseFragment{
 			db = oh.getWritableDatabase();
 		}
 		cursor = db.query("goods",null,null,null,null,null,null,null);
-		db.close();
 		goodsAdapter = new GoodsAdapter(getActivity(), cursor);
 		lv.setAdapter(goodsAdapter);
 		
@@ -119,7 +120,7 @@ public class StorageGoodsFragment extends BaseFragment{
 		// TODO Auto-generated method stub
 		switch(v.getId()) {
 		case R.id.btn_addgoods:
-			InputDialog.showDialog(getActivity(), "", new OnInputDialogListener() {
+			InputDialog.showDialog(getActivity(), "请输入货物信息", new OnInputDialogListener() {
 				
 				public void onConfirm(String text1, String text2, String text3) {
 					// TODO Auto-generated method stub
