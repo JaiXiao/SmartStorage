@@ -4,17 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button 
-        android:id="@+id/btn_addgoods"
-	    android:layout_width="match_parent"
-	    android:layout_height="40dp"
-	    android:text="添加货物"
-        />
-    <ListView
-	    android:id="@+id/lv_goods"
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	>
-	</ListView>
+    
 
 </LinearLayout>
