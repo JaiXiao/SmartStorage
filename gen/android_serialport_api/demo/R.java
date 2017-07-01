@@ -163,8 +163,8 @@ public final class R {
         public static final int et_inputdialog_message_name=0x7f0b0015;
         public static final int et_inputdialog_message_type=0x7f0b0016;
         public static final int et_inputdialog_message_value=0x7f0b0017;
-        public static final int et_settingdialog_message_max=0x7f0b001b;
-        public static final int et_settingdialog_message_min=0x7f0b001c;
+        public static final int et_settingdialog_message_max=0x7f0b001c;
+        public static final int et_settingdialog_message_min=0x7f0b001b;
         public static final int ll_tab_goods=0x7f0b000d;
         public static final int ll_tab_info=0x7f0b0009;
         public static final int ll_tab_setting=0x7f0b000b;

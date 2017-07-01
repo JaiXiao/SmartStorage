@@ -4,6 +4,7 @@ package bean;
 import android.database.Cursor;
 
 public class Good {
+	//物品的bean类
 	private String name;
 	private String type;
 	private int value;

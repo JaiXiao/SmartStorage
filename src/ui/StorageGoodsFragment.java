@@ -1,6 +1,8 @@
 package ui;
 
 
+import java.util.Date;
+
 import adapter.GoodsAdapter;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -86,7 +88,7 @@ public class StorageGoodsFragment extends BaseFragment{
 		setListView();
 	}
 	
-	//  É¾³ıitem
+	//  åˆ é™¤item
 	private OnClickListener clickListener = new OnClickListener() {
 		
 		public void onClick(View v) {
@@ -98,7 +100,7 @@ public class StorageGoodsFragment extends BaseFragment{
 			int _id = cursor.getInt(cursor.getColumnIndex("_id"));
 			int i = db.delete("goods","_id = ?",new String[]{_id + ""});
 			setListView();
-			ToastUtils.ShowShortToast(getActivity(), "É¾³ı³É¹¦!");
+			ToastUtils.ShowShortToast(getActivity(), "åˆ é™¤æˆåŠŸ!");
 			popupWindow.dismiss();
 		}
 	};
@@ -120,7 +122,7 @@ public class StorageGoodsFragment extends BaseFragment{
 		// TODO Auto-generated method stub
 		switch(v.getId()) {
 		case R.id.btn_addgoods:
-			InputDialog.showDialog(getActivity(), "ÇëÊäÈë»õÎïĞÅÏ¢", new OnInputDialogListener() {
+			InputDialog.showDialog(getActivity(), "è¯·è¾“å…¥è´§ç‰©ä¿¡æ¯", new OnInputDialogListener() {
 				
 				public void onConfirm(String text1, String text2, String text3) {
 					// TODO Auto-generated method stub
@@ -132,10 +134,11 @@ public class StorageGoodsFragment extends BaseFragment{
 						values.put("name",text1);
 						values.put("type", text2);
 						values.put("value",Integer.parseInt(text3));
+						values.put("date", new java.sql.Date(new Date().getTime()).toString());
 						db.insert("goods", null, values);
 						setListView();
 					}else {
-						ToastUtils.ShowShortToast(getActivity(), "ĞÅÏ¢²»¿ÉÒÔÎª¿Õ!");
+						ToastUtils.ShowShortToast(getActivity(), "ä¿¡æ¯ä¸å¯ä»¥ä¸ºç©º!");
 					}
 				}
 				
