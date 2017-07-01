@@ -158,8 +158,10 @@ public class StorageSettingFragment extends BaseFragment{
 				}else if(flag == 4) {
 					if(max == 1) {
 						IS_OPEN = true;
+						switch_setting_open.setChecked(true);		
 					}else {
 						IS_OPEN = false;
+						switch_setting_open.setChecked(false);
 					}
 				}
 			}
