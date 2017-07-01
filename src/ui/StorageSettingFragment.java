@@ -140,6 +140,7 @@ public class StorageSettingFragment extends BaseFragment{
 			values.put("max", 1);
 			values.put("min", 1);
 			db.insert("settings",null,values);
+			switch_setting_open.setChecked(true);
    	 	} else {
 	   	 	while(c.moveToNext()){
 				// 先通过列名获取列索引 然后在获取该列的内容
@@ -166,6 +167,9 @@ public class StorageSettingFragment extends BaseFragment{
 				}
 			}
    	 	}
+   	 	tv_setting_temperature.setText(MIN_TEMPERATURE + " - " + MAX_TEMPERATURE);
+   	 	tv_setting_humidity.setText(MIN_HUMIDITY + " - " + MAX_HUMIDITY);
+   	 	tv_setting_smoke.setText(MIN_SMOKE + " - " + MAX_SMOKE);
 	} 
 
 	
@@ -186,6 +190,8 @@ public class StorageSettingFragment extends BaseFragment{
 						values.put("min", MIN_TEMPERATURE);
 						db = oh.getWritableDatabase();
 						int i = db.update("settings", values, "flag = ?", new String[]{"1"});
+					
+						tv_setting_temperature.setText(MIN_TEMPERATURE + " - " + MAX_TEMPERATURE);
 					}else {
 						ToastUtils.ShowShortToast(getActivity(), "信息不可以为空!");
 					}
@@ -211,6 +217,8 @@ public class StorageSettingFragment extends BaseFragment{
 						values.put("min", MIN_HUMIDITY);
 						db = oh.getWritableDatabase();
 						int i = db.update("settings", values, "flag = ?", new String[]{"2"});
+					
+						tv_setting_humidity.setText(MIN_HUMIDITY + " - " + MAX_HUMIDITY);
 					}else {
 						ToastUtils.ShowShortToast(getActivity(), "信息不可以为空!");
 					}
@@ -235,6 +243,8 @@ public class StorageSettingFragment extends BaseFragment{
 						values.put("min", MIN_SMOKE);
 						db = oh.getWritableDatabase();
 						int i = db.update("settings", values, "flag = ?", new String[]{"3"});
+					
+						tv_setting_smoke.setText(MIN_SMOKE + " - " + MAX_SMOKE);
 					}else {
 						ToastUtils.ShowShortToast(getActivity(), "信息不可以为空!");
 					}
