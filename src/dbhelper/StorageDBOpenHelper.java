@@ -20,6 +20,14 @@ public class StorageDBOpenHelper extends SQLiteOpenHelper{
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
+		// setting 标识
+		// 1: 温度
+		// 2: 湿度
+		// 3: 烟雾
+		// 4: 开关
+
+		db.execSQL("create table settings(flag integer, max decimal(8,2), min decimal(8,2))");
+
 		db.execSQL("create table goods(_id integer primary key autoincrement, name char(20), type char(20), value integer(10))");
 	}
 

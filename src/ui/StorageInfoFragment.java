@@ -62,7 +62,7 @@ public class StorageInfoFragment extends BaseFragment{
 	返回结果：无
 	*************************************************************************/
 	private class ReadThread extends Thread {
-
+		
 		@Override
 		public void run() {
 			super.run();
