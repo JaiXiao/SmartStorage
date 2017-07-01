@@ -161,6 +161,8 @@ public class StorageInfoFragment extends BaseFragment{
 						d = Integer.parseInt(sub);
 						//Humidity
 						if(message.charAt(1)=='0') {
+							
+							System.out.println("shidu = "+ StorageSettingFragment.MAX_TEMPERATURE + "%RH");
 							System.out.println("shidu = "+ sub + "%RH");
 							textshidu.setText(" Êª¶È£º "+sub + "%RH");
 							if(d>45)//the warning value(you can change it depend on situation)

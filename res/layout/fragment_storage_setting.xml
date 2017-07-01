@@ -2,8 +2,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     android:orientation="vertical">
 
+    <RelativeLayout 
+       	android:id="@+id/rl_setting_switch"
+       	android:layout_width="match_parent"
+	    android:layout_height="40dp"
+	    android:orientation="horizontal"
+       >
+       <TextView 
+           	android:layout_width="100dp"
+    		android:layout_height="wrap_content"
+    		android:text="开关"
+    		android:layout_marginLeft="15dp"
+		    android:textColor="#000"
+		    android:textSize="18sp"
+		    android:layout_marginTop="15dp"
+ 		/>
+       
+       <Switch
+            android:id="@+id/switch_setting_open"
+           	android:layout_width="wrap_content"
+    		android:layout_height="wrap_content" 
+    		android:textOff="监测关闭"
+    		android:textOn="检测开启"		
+		    android:layout_alignParentRight="true"
+		    android:layout_marginRight="15dp"
+		    android:layout_marginTop="15dp"
+ 		/>
+   </RelativeLayout>
+    
    <RelativeLayout 
        	android:id="@+id/rl_setting_temperature"
        	android:layout_width="match_parent"
@@ -20,7 +49,8 @@
 		    android:layout_marginTop="15dp"
  		/>
        
-       <TextView 
+       <TextView
+            android:id="@+id/tv_setting_temperature" 
            	android:layout_width="wrap_content"
     		android:layout_height="wrap_content"
     		android:text="10 - 20"
@@ -47,7 +77,8 @@
 		    android:layout_marginTop="15dp"
  		/>
        
-       <TextView 
+       <TextView
+            android:id="@+id/tv_setting_humidity"  
            	android:layout_width="wrap_content"
     		android:layout_height="wrap_content"
     		android:text="10 - 20"
@@ -75,7 +106,8 @@
 		    android:layout_marginTop="15dp"
  		/>
        
-       <TextView 
+       <TextView
+            android:id="@+id/tv_setting_smoke" 
            	android:layout_width="wrap_content"
     		android:layout_height="wrap_content"
     		android:text="10 - 20"
