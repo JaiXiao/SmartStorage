@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android_serialport_api.demo.R;
 
 public class SettingDialog extends BaseDialog {
+	//设置仓库的环境信息
 
 	private String title;
 	

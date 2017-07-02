@@ -89,10 +89,10 @@ public class StorageSettingFragment extends BaseFragment{
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				// TODO Auto-generated method stub
 				double flag = 1;
-				if (isChecked) {  // ´ò¿ª
+				if (isChecked) {  // æ‰“å¼€
 					IS_OPEN = true;
 					flag = 1;
-                } else {  // ¹Ø±Õ
+                } else {  // å…³é—­
                 	IS_OPEN = false;
                 	flag = 0;
                 } 
@@ -112,11 +112,11 @@ public class StorageSettingFragment extends BaseFragment{
 		db = oh.getWritableDatabase();
 		Cursor c = db.rawQuery("select * from settings", null);
    	 	int number = c.getCount();
-   	 	if(number == 0) {
-   	 		// 1: ÎÂ¶È
-   			// 2: Êª¶È
-   			// 3: ÑÌÎí
-   			// 4: ¿ª¹Ø
+   	 	if(number == 0) {   
+   	 		// 1: æ¸©åº¦
+   			// 2: æ¹¿åº¦
+   			// 3: çƒŸé›¾
+   			// 4: å¼€å…³
 	   	 	ContentValues values = new ContentValues();
 			values.put("flag", 1);
 			values.put("max", 50);
@@ -143,7 +143,7 @@ public class StorageSettingFragment extends BaseFragment{
 			switch_setting_open.setChecked(true);
    	 	} else {
 	   	 	while(c.moveToNext()){
-				// ÏÈÍ¨¹ıÁĞÃû»ñÈ¡ÁĞË÷Òı È»ºóÔÚ»ñÈ¡¸ÃÁĞµÄÄÚÈİ
+	   	 	// å…ˆé€šè¿‡åˆ—åè·å–åˆ—ç´¢å¼• ç„¶ååœ¨è·å–è¯¥åˆ—çš„å†…å®¹
 				int flag = c.getInt(c.getColumnIndex("flag"));
 				double max = c.getDouble(c.getColumnIndex("max"));
 				double min = c.getDouble(c.getColumnIndex("min"));
@@ -178,7 +178,7 @@ public class StorageSettingFragment extends BaseFragment{
 		// TODO Auto-generated method stub
 		switch(v.getId()) {
 		case R.id.rl_setting_temperature:
-			SettingDialog.showDialog(getActivity(), "ÎÂ¶È·¶Î§", new OnSettingDialogListener() {
+			SettingDialog.showDialog(getActivity(), "æ¸©åº¦èŒƒå›´", new OnSettingDialogListener() {
 				
 				public void onConfirm(String max, String min) {
 					// TODO Auto-generated method stub
@@ -193,7 +193,7 @@ public class StorageSettingFragment extends BaseFragment{
 					
 						tv_setting_temperature.setText(MIN_TEMPERATURE + " - " + MAX_TEMPERATURE);
 					}else {
-						ToastUtils.ShowShortToast(getActivity(), "ĞÅÏ¢²»¿ÉÒÔÎª¿Õ!");
+						ToastUtils.ShowShortToast(getActivity(), "ä¿¡æ¯ä¸ºç©º!");
 					}
 				}
 				
@@ -205,7 +205,7 @@ public class StorageSettingFragment extends BaseFragment{
 			
 			break;
 		case R.id.rl_setting_humidity:
-			SettingDialog.showDialog(getActivity(), "Êª¶È·¶Î§", new OnSettingDialogListener() {
+			SettingDialog.showDialog(getActivity(), "æ¹¿åº¦èŒƒå›´", new OnSettingDialogListener() {
 				
 				public void onConfirm(String max, String min) {
 					// TODO Auto-generated method stub
@@ -220,7 +220,7 @@ public class StorageSettingFragment extends BaseFragment{
 					
 						tv_setting_humidity.setText(MIN_HUMIDITY + " - " + MAX_HUMIDITY);
 					}else {
-						ToastUtils.ShowShortToast(getActivity(), "ĞÅÏ¢²»¿ÉÒÔÎª¿Õ!");
+						ToastUtils.ShowShortToast(getActivity(), "ä¿¡æ¯ä¸ºç©º!");
 					}
 				}
 				
@@ -231,7 +231,7 @@ public class StorageSettingFragment extends BaseFragment{
 			});
 			break;
 		case R.id.rl_setting_smoke:
-			SettingDialog.showDialog(getActivity(), "ÑÌÎí·¶Î§", new OnSettingDialogListener() {
+			SettingDialog.showDialog(getActivity(), "çƒŸé›¾", new OnSettingDialogListener() {
 				
 				public void onConfirm(String max, String min) {
 					// TODO Auto-generated method stub
@@ -246,7 +246,7 @@ public class StorageSettingFragment extends BaseFragment{
 					
 						tv_setting_smoke.setText(MIN_SMOKE + " - " + MAX_SMOKE);
 					}else {
-						ToastUtils.ShowShortToast(getActivity(), "ĞÅÏ¢²»¿ÉÒÔÎª¿Õ!");
+						ToastUtils.ShowShortToast(getActivity(), "ä¿¡æ¯ä¸ºç©º!");
 					}
 				}
 				

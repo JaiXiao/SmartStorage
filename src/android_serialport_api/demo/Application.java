@@ -1,11 +1,4 @@
-/*****************************************************************
-ÎÄ¼şÃû£ºApplication.java
-°æ±¾ºÅ£ºv1.0
-´´½¨ÈÕÆÚ£º2013-5-17
-×÷Õß£º´óÁ¬·ÉÏè¿Æ¼¼ÓĞÏŞ¹«Ë¾, www.fesxp.com
-Ö÷Òªº¯ÊıÃèÊö£ºSerialPort getSerialPort()»ñµÃ´ò¿ªµÄ´®¿Ú£»closeSerialPort()¹Ø±Õ´ò¿ªµÄ´®¿Ú
-ĞŞ¸ÄÈÕÖ¾£ºÎŞ
-*****************************************************************/
+
 /*
  * Copyright 2009 Cedric Priscal
  * 
@@ -33,16 +26,17 @@ import android.content.SharedPreferences;
 import android_serialport_api.SerialPort;
 import android_serialport_api.SerialPortFinder;
 
+/**
+ * @ClassName: Application 
+ * @Description: TODO 
+ * @author
+ * @date 2017å¹´7æœˆ2æ—¥ ä¸Šåˆ11:22:07 
+ */
 public class Application extends android.app.Application {
 
 	public SerialPortFinder mSerialPortFinder = new SerialPortFinder();
 	private SerialPort mSerialPort = null;
-/**************************************************************************
-¹¦ÄÜÃèÊö£º´ò¿ª´®¿ÚttySAC0²¢ÉèÖÃ²¨ÌØÂÊÎª115200;
-ÊäÈë²ÎÊı£ºÎŞ
-Êä³ö²ÎÊı£ºÎŞ
-·µ»Ø½á¹û£ºttySAC0´®¿Ú¶ÔÏó
-*************************************************************************/
+
 	
 	public SerialPort getSerialPort() throws SecurityException, IOException, InvalidParameterException {
 		if (mSerialPort == null) {
@@ -53,13 +47,15 @@ public class Application extends android.app.Application {
 		}
 		return mSerialPort;
 	}
-/**************************************************************************
-¹¦ÄÜÃèÊö£º¹Ø±Õ´®¿Ú
-ÊäÈë²ÎÊı£ºÎŞ
-Êä³ö²ÎÊı£ºÎŞ
-·µ»Ø½á¹û£ºÎŞ
-*************************************************************************/
 
+
+	/**
+	 * @Title: closeSerialPort 
+	 * @Description:
+	 * @param:
+	 * @return  void 
+	 * @date 2017å¹´7æœˆ2æ—¥
+	 */
 	public void closeSerialPort() {
 		if (mSerialPort != null) {
 			mSerialPort.close();

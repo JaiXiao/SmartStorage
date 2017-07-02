@@ -1,14 +1,4 @@
-/*****************************************************************
-ÎÄ¼şÃû£ºSerialPortFinder.java
-°æ±¾ºÅ£ºv1.0
-´´½¨ÈÕÆÚ£º2013-5-17
-×÷Õß£º´óÁ¬·ÉÏè¿Æ¼¼ÓĞÏŞ¹«Ë¾, www.fesxp.com
-Ö÷Òªº¯ÊıÃèÊö£ºgetDrivers()»ñµÃÉè±¸£»
-		  getName()»ñµÃÉè±¸Ãû³Æ£»
-		  getAllDevices()µÃµ½¸øÄ¿Â¼ÏÂËùÓĞ´®¿ÚÉè±¸£»
-		  getAllDevicesPath()»ñµÃ¸ÃÄ¿Â¼ÏÂËùÓĞ´®¿ÚÉè±¸µÄÂ·¾¶
-ĞŞ¸ÄÈÕÖ¾£ºÎŞ
-*****************************************************************/
+
 /*
  * Copyright 2009 Cedric Priscal
  * 
@@ -36,6 +26,12 @@ import java.util.Vector;
 
 import android.util.Log;
 
+/**
+ * @ClassName: SerialPortFinder 
+ * @Description: TODO 
+ * @author 
+ * @date 2017å¹´7æœˆ2æ—¥ ä¸Šåˆ11:19:30 
+ */
 public class SerialPortFinder {
 
 	public class Driver {
@@ -70,13 +66,14 @@ public class SerialPortFinder {
 
 	private Vector<Driver> mDrivers = null;
 	
-	/**************************************************************************
-	¹¦ÄÜÃèÊö£º»ñµÃÉè±¸ÎÄ¼ş¼ş
-	ÊäÈë²ÎÊı£ºÎŞ
-	Êä³ö²ÎÊı£ºÎŞ
-	·µ»Ø½á¹û£º/devÄ¿Â¼ÏÂµÄËùÓĞÉè±¸
-	*************************************************************************/
 
+	/**
+	 * @Title: getDrivers 
+	 * @Description:
+	 * @param:
+	 * @return  Vector<Driver> 
+	 * @date 2017å¹´7æœˆ2æ—¥
+	 */
 	Vector<Driver> getDrivers() throws IOException {
 		if (mDrivers == null) {
 			mDrivers = new Vector<Driver>();
@@ -96,14 +93,14 @@ public class SerialPortFinder {
 		}
 		return mDrivers;
 	}
-	
-	/**************************************************************************
-	¹¦ÄÜÃèÊö£º»ñµÃµ±Ç°Ä¿Â¼ÏÂËùÓĞ´®¿ÚÉè±¸
-	ÊäÈë²ÎÊı£ºÎŞ
-	Êä³ö²ÎÊı£ºÎŞ
-	·µ»Ø½á¹û£ºËùÓĞ´®¿ÚÀàÉè±¸ÎÄ¼ş
-	*************************************************************************/
-
+		
+	/**
+	 * @Title: getAllDevices 
+	 * @Description:
+	 * @param:
+	 * @return  String[] 
+	 * @date 2017å¹´7æœˆ2æ—¥
+	 */
 	public String[] getAllDevices() {
 		Vector<String> devices = new Vector<String>();
 		// Parse each driver
@@ -125,13 +122,15 @@ public class SerialPortFinder {
 		return devices.toArray(new String[devices.size()]);
 	}
 	
-	/**************************************************************************
-	¹¦ÄÜÃèÊö£ºµÃµ½ËùÓĞ´®¿ÚÉè±¸µÄÂ·¾¶
-	ÊäÈë²ÎÊı£ºÎŞ
-	Êä³ö²ÎÊı£ºÎŞ
-	·µ»Ø½á¹û£º´®¿ÚÉè±¸µÄÂ·¾¶
-	*************************************************************************/
+	
 
+	/**
+	 * @Title: getAllDevicesPath 
+	 * @Description:
+	 * @param:
+	 * @return  String[] 
+	 * @date 2017å¹´7æœˆ2æ—¥
+	 */
 	public String[] getAllDevicesPath() {
 		Vector<String> devices = new Vector<String>();
 		// Parse each driver

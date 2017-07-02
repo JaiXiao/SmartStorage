@@ -56,10 +56,10 @@ public class StorageInfoFragment extends BaseFragment{
 	
 	
 	/**************************************************************************
-	¹¦ÄÜÃèÊö£º¶Á´®¿ÚµÄÏß³Ì
-	ÊäÈë²ÎÊı£ºÎŞ
-	Êä³ö²ÎÊı£ºÎŞ
-	·µ»Ø½á¹û£ºÎŞ
+	åŠŸèƒ½æè¿°ï¼šè¯»ä¸²å£çš„çº¿ç¨‹
+	è¾“å…¥å‚æ•°ï¼šæ— 
+	è¾“å‡ºå‚æ•°ï¼šæ— 
+	è¿”å›ç»“æœï¼šæ— 
 	*************************************************************************/
 	private class ReadThread extends Thread {
 		
@@ -91,10 +91,10 @@ public class StorageInfoFragment extends BaseFragment{
 	}
 	
 	/**************************************************************************
-	¹¦ÄÜÃèÊö£ºÏÔÊ¾´íÎóĞÅÏ¢
-	ÊäÈë²ÎÊı£º´íÎó·û
-	Êä³ö²ÎÊı£º´íÎóĞÅÏ¢£¬ÒÔ¶Ô»°¿òµÄĞÎÊ½³öÏÖ
-	·µ»Ø½á¹û£ºÎŞ
+	åŠŸèƒ½æè¿°ï¼šæ˜¾ç¤ºé”™è¯¯ä¿¡æ¯
+	è¾“å…¥å‚æ•°ï¼šé”™è¯¯ç¬¦
+	è¾“å‡ºå‚æ•°ï¼šé”™è¯¯ä¿¡æ¯ï¼Œä»¥å¯¹è¯æ¡†çš„å½¢å¼å‡ºç°
+	è¿”å›ç»“æœï¼šæ— 
 	*************************************************************************/
 	private void DisplayError(int resourceId) {
 		AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
@@ -137,10 +137,10 @@ public class StorageInfoFragment extends BaseFragment{
 	}
 
 	/**************************************************************************
-	¹¦ÄÜÃèÊö£º½ÓÊÕ´®¿ÚĞÅÏ¢
-	ÊäÈë²ÎÊı£ºbufferÎª´®¿Ú»º³åÇø£¬sizeÎª»º³åÇø´óĞ¡
-	Êä³ö²ÎÊı£ºÎŞ
-	·µ»Ø½á¹û£ºÎŞ
+	åŠŸèƒ½æè¿°ï¼šæ¥æ”¶ä¸²å£ä¿¡æ¯
+	è¾“å…¥å‚æ•°ï¼šbufferä¸ºä¸²å£ç¼“å†²åŒºï¼Œsizeä¸ºç¼“å†²åŒºå¤§å°
+	è¾“å‡ºå‚æ•°ï¼šæ— 
+	è¿”å›ç»“æœï¼šæ— 
 	*************************************************************************/
 	//	protected abstract void onDataReceived(final byte[] buffer, final int size);
 		protected void onDataReceived(final String message){
@@ -164,7 +164,7 @@ public class StorageInfoFragment extends BaseFragment{
 							
 							System.out.println("shidu = "+ StorageSettingFragment.MAX_TEMPERATURE + "%RH");
 							System.out.println("shidu = "+ sub + "%RH");
-							textshidu.setText(" Êª¶È£º "+sub + "%RH");
+							textshidu.setText(" Êªï¿½È£ï¿½ "+sub + "%RH");
 							if(d>45)//the warning value(you can change it depend on situation)
 							{
 								Drawable dr=getResources().getDrawable(R.drawable.barcolor);
@@ -181,8 +181,8 @@ public class StorageInfoFragment extends BaseFragment{
 						
 						//Temperature
 						if(message.charAt(1)=='1') {
-							System.out.println("wendu = "+ sub +" ¡ãC");
-							textwendu.setText(" ÎÂ¶È£º "+sub + " ¡ãC");
+							System.out.println("wendu = "+ sub +" ï¿½ï¿½C");
+							textwendu.setText(" ï¿½Â¶È£ï¿½ "+sub + " ï¿½ï¿½C");
 							if(d>40)//the warning value(you can change it depend on situation)
 							{
 								Drawable dr=getResources().getDrawable(R.drawable.barcolor);
@@ -200,7 +200,7 @@ public class StorageInfoFragment extends BaseFragment{
 						//Smoke
 						if(message.charAt(1)=='3') {
 							System.out.println("yanwu = "+ sub);
-							textyanwu.setText(" ÑÌÎí£º "+sub + "PM");
+							textyanwu.setText(" ï¿½ï¿½ï¿½ï¿½ "+sub + "PM");
 							if(d>30000)//the warning value(you can change it depend on situation)
 							{
 								Drawable dr=getResources().getDrawable(R.drawable.barcolor);
@@ -241,10 +241,10 @@ public class StorageInfoFragment extends BaseFragment{
 	}
 	
 	/**************************************************************************
-	¹¦ÄÜÃèÊö£ºÏú»Ùº¯Êı
-	ÊäÈë²ÎÊı£ºÎŞ
-	Êä³ö²ÎÊı£ºÎŞ
-	·µ»Ø½á¹û£ºÎŞ
+	åŠŸèƒ½æè¿°ï¼šé”€æ¯å‡½æ•°
+	è¾“å…¥å‚æ•°ï¼šæ— 
+	è¾“å‡ºå‚æ•°ï¼šæ— 
+	è¿”å›ç»“æœï¼šæ— 
 	*************************************************************************/
 	@Override
 	public void onDestroy() {

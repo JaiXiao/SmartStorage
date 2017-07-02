@@ -1,23 +1,16 @@
-/*****************************************************************
-ÎÄ¼şÃû£ºSerialPortActivity.java
-°æ±¾ºÅ£ºv1.0
-´´½¨ÈÕÆÚ£º2013-5-17
-×÷Õß£º´óÁ¬·ÉÏè¿Æ¼¼ÓĞÏŞ¹«Ë¾, www.fesxp.com
-Ö÷Òªº¯ÊıÃèÊö£ºReadThread´´½¨Ò»¸ö¶Á´®¿ÚÏß³Ì£¬¶ÁÈ¡´®¿ÚĞÅÏ¢£»
-DisplayError(int resourceId)ÏÔÊ¾´íÎóĞÅÏ¢£»
-onDataReceived(final byte[] buffer, final int size)½ÓÊÕ´®¿ÚĞÅÏ¢£»
-onDestroy()Ïú»ÙÎö¹¹º¯Êı
-ĞŞ¸ÄÈÕÖ¾£ºÎŞ
-*****************************************************************/
+/**
+ * @ClassName: SerialPortActivity 
+ * @Description: TODO 
+ * @author 
+ * @date 2017å¹´7æœˆ2æ—¥ ä¸Šåˆ11:23:44 
+ */
 /*
  * Copyright 2009 Cedric Priscal
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ * you may not use this file except in compliance with the License. 
+ * You may obtain a copy of the License at * 
+ * http://www.apache.org/licenses/LICENSE-2.0 * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -43,6 +36,12 @@ import android.support.v4.app.FragmentActivity;
 import android_serialport_api.SerialPort;
 import android_serialport_api.demo.R;
 
+/**
+ * @ClassName: SerialPortActivity 
+ * @Description: TODO 
+ * @author LcritZ
+ * @date 2017å¹´7æœˆ2æ—¥ ä¸Šåˆ11:26:02 
+ */
 public abstract class SerialPortActivity extends FragmentActivity {
 
 	protected Application mApplication;
@@ -51,12 +50,7 @@ public abstract class SerialPortActivity extends FragmentActivity {
 	private InputStream mInputStream;
 	private ReadThread mReadThread;
 	private BufferedReader br;
-	/**************************************************************************
-	¹¦ÄÜÃèÊö£º¶Á´®¿ÚµÄÏß³Ì
-	ÊäÈë²ÎÊı£ºÎŞ
-	Êä³ö²ÎÊı£ºÎŞ
-	·µ»Ø½á¹û£ºÎŞ
-	*************************************************************************/
+
 
 	private class ReadThread extends Thread {
 
@@ -87,13 +81,14 @@ public abstract class SerialPortActivity extends FragmentActivity {
 		}
 	}
 	
-	/**************************************************************************
-	¹¦ÄÜÃèÊö£ºÏÔÊ¾´íÎóĞÅÏ¢
-	ÊäÈë²ÎÊı£º´íÎó·û
-	Êä³ö²ÎÊı£º´íÎóĞÅÏ¢£¬ÒÔ¶Ô»°¿òµÄĞÎÊ½³öÏÖ
-	·µ»Ø½á¹û£ºÎŞ
-	*************************************************************************/
-
+		
+	/**
+	 * @Title: DisplayError 
+	 * @Description:
+	 * @param resourceId
+	 * @return  void 
+	 * @date 2017å¹´7æœˆ2æ—¥
+	 */
 	private void DisplayError(int resourceId) {
 		AlertDialog.Builder b = new AlertDialog.Builder(this);
 		b.setTitle("Error");
@@ -127,22 +122,13 @@ public abstract class SerialPortActivity extends FragmentActivity {
 		}
 	}
 	
-	/**************************************************************************
-	¹¦ÄÜÃèÊö£º½ÓÊÕ´®¿ÚĞÅÏ¢
-	ÊäÈë²ÎÊı£ºbufferÎª´®¿Ú»º³åÇø£¬sizeÎª»º³åÇø´óĞ¡
-	Êä³ö²ÎÊı£ºÎŞ
-	·µ»Ø½á¹û£ºÎŞ
-	*************************************************************************/
+	
 
-//	protected abstract void onDataReceived(final byte[] buffer, final int size);
-	protected abstract void onDataReceived(final String message);
-	/**************************************************************************
-	¹¦ÄÜÃèÊö£ºÏú»Ùº¯Êı
-	ÊäÈë²ÎÊı£ºÎŞ
-	Êä³ö²ÎÊı£ºÎŞ
-	·µ»Ø½á¹û£ºÎŞ
-	*************************************************************************/
+	protected abstract void onDataReceived(final String message);	
 
+	/* (non-Javadoc)
+	 * @see android.support.v4.app.FragmentActivity#onDestroy()
+	 */
 	@Override
 	protected void onDestroy() {
 		if (mReadThread != null)

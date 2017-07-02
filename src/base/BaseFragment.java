@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 public abstract class BaseFragment extends Fragment implements OnClickListener{
 
-	//·µ»ØÒ»¸öView¶ÔÏó£¬Õâ¸ö¶ÔÏó»á×÷ÎªFragmentµÄÏÔÊ¾ÄÚÈİ
+	//è¿”å›ä¸€ä¸ªViewå¯¹è±¡ï¼Œè¿™ä¸ªå¯¹è±¡ä¼šä½œä¸ºFragmentçš„æ˜¾ç¤ºå†…å®¹
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
