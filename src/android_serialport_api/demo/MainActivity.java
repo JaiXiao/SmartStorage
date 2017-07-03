@@ -138,7 +138,6 @@ public class MainActivity extends SerialPortActivity {
 							textguangzhao.setText("光照： NO");
 							RatingBarguangzhao.setRating(0);
 						}
-						//*******ø…¿©’π**********
 					}
 					
 				}

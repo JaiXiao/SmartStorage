@@ -164,8 +164,8 @@ public class StorageInfoFragment extends BaseFragment{
 							
 							System.out.println("shidu = "+ StorageSettingFragment.MAX_TEMPERATURE + "%RH");
 							System.out.println("shidu = "+ sub + "%RH");
-							textshidu.setText(" ʪ�ȣ� "+sub + "%RH");
-							if(d>45)//the warning value(you can change it depend on situation)
+							textshidu.setText("湿度："+sub + "%RH");
+							if(d>95)//the warning value(you can change it depend on situation)
 							{
 								Drawable dr=getResources().getDrawable(R.drawable.barcolor);
 								ProgressBarshidu.setProgressDrawable(dr);
@@ -181,9 +181,9 @@ public class StorageInfoFragment extends BaseFragment{
 						
 						//Temperature
 						if(message.charAt(1)=='1') {
-							System.out.println("wendu = "+ sub +" ��C");
-							textwendu.setText(" �¶ȣ� "+sub + " ��C");
-							if(d>40)//the warning value(you can change it depend on situation)
+							System.out.println("wendu = "+ sub +"℃");
+							textwendu.setText(" 温度： "+sub + " ℃");
+							if(d>50)//the warning value(you can change it depend on situation)
 							{
 								Drawable dr=getResources().getDrawable(R.drawable.barcolor);
 								ProgressBarwendu.setProgressDrawable(dr);
@@ -200,7 +200,7 @@ public class StorageInfoFragment extends BaseFragment{
 						//Smoke
 						if(message.charAt(1)=='3') {
 							System.out.println("yanwu = "+ sub);
-							textyanwu.setText(" ���� "+sub + "PM");
+							textyanwu.setText("有烟雾！");
 							if(d>30000)//the warning value(you can change it depend on situation)
 							{
 								Drawable dr=getResources().getDrawable(R.drawable.barcolor);

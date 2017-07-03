@@ -32,6 +32,7 @@ public class GoodsAdapter extends CursorAdapter{
 		holder.tv_name.setText(good.getName());
 		holder.tv_type.setText(good.getType());
 		holder.tv_value.setText(good.getValue() + "");
+		holder.tv_date.setText(good.getDate());
 	}
 	
 	private ViewHolder getHolder(View view){
@@ -47,11 +48,13 @@ public class GoodsAdapter extends CursorAdapter{
 		private TextView tv_name;
 		private TextView tv_type;
 		private TextView tv_value;
+		private TextView tv_date;
 
 		public ViewHolder(View view) {
 			tv_name = (TextView) view.findViewById(R.id.tv_good_name);
 			tv_type = (TextView) view.findViewById(R.id.tv_good_type);
 			tv_value = (TextView) view.findViewById(R.id.tv_good_value);
+			tv_date = (TextView) view.findViewById(R.id.tv_good_date);
 		}
 	}
 
