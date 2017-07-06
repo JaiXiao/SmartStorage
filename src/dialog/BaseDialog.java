@@ -16,7 +16,7 @@ public abstract class BaseDialog extends AlertDialog implements android.view.Vie
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+		// 主界面，初始化界面，监听器和数据
 		super.onCreate(savedInstanceState);
 		initView();
 		initListener();

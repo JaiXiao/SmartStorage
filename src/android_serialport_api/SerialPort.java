@@ -1,11 +1,8 @@
 /*****************************************************************
-ÎÄ¼şÃû£ºSerialPort.java
-°æ±¾ºÅ£ºv1.0
-´´½¨ÈÕÆÚ£º2013-5-17
-×÷Õß£º´óÁ¬·ÉÏè¿Æ¼¼ÓĞÏŞ¹«Ë¾, www.fesxp.com
-Ö÷Òªº¯ÊıÃèÊö£º
-public SerialPort(File device, int baudrate, int flags)	¶Ô´®¿ÚÊı¾İºÍº¯Êı½øĞĞ·â×°
- ĞŞ¸ÄÈÕÖ¾£ºÎŞ
+ SerialPort.java 
+ä¸»è¦å‡½æ•°ï¼š
+public SerialPort(File device, int baudrate, int flags)	
+å¯¹ä¸²å£æ•°æ®å’Œå‡½æ•°è¿›è¡Œå°è£…
 *****************************************************************/
 /*
  * Copyright 2009 Cedric Priscal
@@ -47,12 +44,15 @@ public class SerialPort {
 	private FileOutputStream mFileOutputStream;
 	
 	/**************************************************************************
-	¹¦ÄÜÃèÊö£ºSerialPortÀàµÄ¹¹Ôìº¯Êı
-	ÊäÈë²ÎÊı£º´®¿ÚÀàÎÄ¼ş±êÊ¶·ûdevice£¬´®¿Ú²¨ÌØÂÊbaudrate£¬±êÖ¾Î»flag
-	Êä³ö²ÎÊı£ºÎŞ
-	·µ»Ø½á¹û£ºÎŞ
+		serialPortç±»çš„æ„é€ å‡½æ•°
 	*************************************************************************/
-
+	/**
+	 * @param device
+	 * @param baudrate
+	 * @param flags
+	 * @throws SecurityException
+	 * @throws IOException
+	 */
 	public SerialPort(File device, int baudrate, int flags) throws SecurityException, IOException {
 
 		/* Check access permission */

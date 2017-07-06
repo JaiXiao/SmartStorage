@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android_serialport_api.demo.R;
 
 public class SettingDialog extends BaseDialog {
+	//设置仓库的环境信息
 
 	private String title;
 	
@@ -67,12 +68,12 @@ public class SettingDialog extends BaseDialog {
 	public void processClick(View v) {
 		// TODO Auto-generated method stub
 		switch (v.getId()) {
-		case R.id.bt_inputdialog_cancel:
+		case R.id.btn_settingdialog_cancel:
 			if(onSettingDialogListener != null){
 				onSettingDialogListener.onCancel();
 			}
 			break;
-		case R.id.bt_inputdialog_confirm:
+		case R.id.btn_settingdialog_confirm:
 			if(onSettingDialogListener != null){
 				onSettingDialogListener.onConfirm(et_settingdialog_message_max.getText().toString(),et_settingdialog_message_min.getText().toString());
 			}

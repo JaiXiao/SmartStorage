@@ -40,10 +40,7 @@ public class StorageSettingFragment extends BaseFragment{
 	
 	public static double MAX_HUMIDITY = 95;
 	public static double MIN_HUMIDITY = 20;
-	
-	public static double MAX_SMOKE = 30000;
-	public static double MIN_SMOKE = 0;
-	
+
 	public static boolean IS_OPEN = true;
 	
 	private StorageDBOpenHelper oh; 
@@ -53,13 +50,11 @@ public class StorageSettingFragment extends BaseFragment{
 	private RelativeLayout rl_setting_switch;
 	private RelativeLayout rl_setting_temperature;
 	private RelativeLayout rl_setting_humidity;
-	private RelativeLayout rl_setting_smoke;
 	
 	
 	private Switch switch_setting_open;
 	private TextView tv_setting_temperature;
 	private TextView tv_setting_humidity;
-	private TextView tv_setting_smoke;
 	
 	@Override
 	public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -69,12 +64,10 @@ public class StorageSettingFragment extends BaseFragment{
 		rl_setting_switch = (RelativeLayout) view.findViewById(R.id.rl_setting_switch);
 		rl_setting_temperature = (RelativeLayout) view.findViewById(R.id.rl_setting_temperature);
 		rl_setting_humidity = (RelativeLayout) view.findViewById(R.id.rl_setting_humidity);
-		rl_setting_smoke = (RelativeLayout) view.findViewById(R.id.rl_setting_smoke);
 		
 		switch_setting_open = (Switch) view.findViewById(R.id.switch_setting_open);
 		tv_setting_temperature = (TextView) view.findViewById(R.id.tv_setting_temperature);
 		tv_setting_humidity = (TextView) view.findViewById(R.id.tv_setting_humidity);
-		tv_setting_smoke = (TextView) view.findViewById(R.id.tv_setting_smoke);
 		return view;
 	}
 
@@ -83,16 +76,15 @@ public class StorageSettingFragment extends BaseFragment{
 		// TODO Auto-generated method stub
 		rl_setting_temperature.setOnClickListener(this);
 		rl_setting_humidity.setOnClickListener(this);
-		rl_setting_smoke.setOnClickListener(this);
 		switch_setting_open.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				// TODO Auto-generated method stub
 				double flag = 1;
-				if (isChecked) {  // ´ò¿ª
+				if (isChecked) {  // æ‰“å¼€
 					IS_OPEN = true;
 					flag = 1;
-                } else {  // ¹Ø±Õ
+                } else {  // å…³é—­
                 	IS_OPEN = false;
                 	flag = 0;
                 } 
@@ -112,11 +104,11 @@ public class StorageSettingFragment extends BaseFragment{
 		db = oh.getWritableDatabase();
 		Cursor c = db.rawQuery("select * from settings", null);
    	 	int number = c.getCount();
-   	 	if(number == 0) {
-   	 		// 1: ÎÂ¶È
-   			// 2: Êª¶È
-   			// 3: ÑÌÎí
-   			// 4: ¿ª¹Ø
+   	 	if(number == 0) {   
+   	 		// 1: æ¸©åº¦
+   			// 2: æ¹¿åº¦
+   			// 3: çƒŸé›¾
+   			// 4: å¼€å…³
 	   	 	ContentValues values = new ContentValues();
 			values.put("flag", 1);
 			values.put("max", 50);
@@ -140,22 +132,20 @@ public class StorageSettingFragment extends BaseFragment{
 			values.put("max", 1);
 			values.put("min", 1);
 			db.insert("settings",null,values);
+			switch_setting_open.setChecked(true);
    	 	} else {
 	   	 	while(c.moveToNext()){
-				// ÏÈÍ¨¹ıÁĞÃû»ñÈ¡ÁĞË÷Òı È»ºóÔÚ»ñÈ¡¸ÃÁĞµÄÄÚÈİ
+	   	 	// å…ˆé€šè¿‡åˆ—åè·å–åˆ—ç´¢å¼• ç„¶ååœ¨è·å–è¯¥åˆ—çš„å†…å®¹
 				int flag = c.getInt(c.getColumnIndex("flag"));
 				double max = c.getDouble(c.getColumnIndex("max"));
 				double min = c.getDouble(c.getColumnIndex("min"));
 				if(flag == 1) {
 					MAX_TEMPERATURE = max;
 					MIN_TEMPERATURE = min;
-				}else if(flag == 2) {
+				} else if(flag == 2) {
 					MAX_HUMIDITY = max;
 					MIN_HUMIDITY = min;
-				}else if(flag == 3) {
-					MAX_SMOKE = max;
-					MIN_SMOKE = min;
-				}else if(flag == 4) {
+				} else if(flag == 4) {
 					if(max == 1) {
 						IS_OPEN = true;
 						switch_setting_open.setChecked(true);		
@@ -166,6 +156,8 @@ public class StorageSettingFragment extends BaseFragment{
 				}
 			}
    	 	}
+   	 	tv_setting_temperature.setText(MIN_TEMPERATURE + " - " + MAX_TEMPERATURE);
+   	 	tv_setting_humidity.setText(MIN_HUMIDITY + " - " + MAX_HUMIDITY);
 	} 
 
 	
@@ -174,7 +166,7 @@ public class StorageSettingFragment extends BaseFragment{
 		// TODO Auto-generated method stub
 		switch(v.getId()) {
 		case R.id.rl_setting_temperature:
-			SettingDialog.showDialog(getActivity(), "ÎÂ¶È·¶Î§", new OnSettingDialogListener() {
+			SettingDialog.showDialog(getActivity(), "æ¸©åº¦èŒƒå›´", new OnSettingDialogListener() {
 				
 				public void onConfirm(String max, String min) {
 					// TODO Auto-generated method stub
@@ -186,8 +178,10 @@ public class StorageSettingFragment extends BaseFragment{
 						values.put("min", MIN_TEMPERATURE);
 						db = oh.getWritableDatabase();
 						int i = db.update("settings", values, "flag = ?", new String[]{"1"});
+					
+						tv_setting_temperature.setText(MIN_TEMPERATURE + " - " + MAX_TEMPERATURE);
 					}else {
-						ToastUtils.ShowShortToast(getActivity(), "ĞÅÏ¢²»¿ÉÒÔÎª¿Õ!");
+						ToastUtils.ShowShortToast(getActivity(), "ä¿¡æ¯ä¸ºç©º!");
 					}
 				}
 				
@@ -199,7 +193,7 @@ public class StorageSettingFragment extends BaseFragment{
 			
 			break;
 		case R.id.rl_setting_humidity:
-			SettingDialog.showDialog(getActivity(), "Êª¶È·¶Î§", new OnSettingDialogListener() {
+			SettingDialog.showDialog(getActivity(), "æ¹¿åº¦èŒƒå›´", new OnSettingDialogListener() {
 				
 				public void onConfirm(String max, String min) {
 					// TODO Auto-generated method stub
@@ -211,32 +205,10 @@ public class StorageSettingFragment extends BaseFragment{
 						values.put("min", MIN_HUMIDITY);
 						db = oh.getWritableDatabase();
 						int i = db.update("settings", values, "flag = ?", new String[]{"2"});
-					}else {
-						ToastUtils.ShowShortToast(getActivity(), "ĞÅÏ¢²»¿ÉÒÔÎª¿Õ!");
-					}
-				}
-				
-				public void onCancel() {
-					// TODO Auto-generated method stub
 					
-				}
-			});
-			break;
-		case R.id.rl_setting_smoke:
-			SettingDialog.showDialog(getActivity(), "ÑÌÎí·¶Î§", new OnSettingDialogListener() {
-				
-				public void onConfirm(String max, String min) {
-					// TODO Auto-generated method stub
-					if(!TextUtils.isEmpty(max) && !TextUtils.isEmpty(min)){
-						MAX_SMOKE = Double.parseDouble(max);
-						MIN_SMOKE = Double.parseDouble(min);
-						ContentValues values = new ContentValues();
-						values.put("max", MAX_SMOKE);
-						values.put("min", MIN_SMOKE);
-						db = oh.getWritableDatabase();
-						int i = db.update("settings", values, "flag = ?", new String[]{"3"});
+						tv_setting_humidity.setText(MIN_HUMIDITY + " - " + MAX_HUMIDITY);
 					}else {
-						ToastUtils.ShowShortToast(getActivity(), "ĞÅÏ¢²»¿ÉÒÔÎª¿Õ!");
+						ToastUtils.ShowShortToast(getActivity(), "ä¿¡æ¯ä¸ºç©º!");
 					}
 				}
 				

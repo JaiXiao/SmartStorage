@@ -134,7 +134,7 @@ public class StorageGoodsFragment extends BaseFragment{
 						values.put("name",text1);
 						values.put("type", text2);
 						values.put("value",Integer.parseInt(text3));
-						values.put("date",new Date().toString());
+						values.put("date", new java.sql.Date(new Date().getTime()).toString());
 						db.insert("goods", null, values);
 						setListView();
 					}else {
