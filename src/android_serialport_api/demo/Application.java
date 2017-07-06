@@ -49,7 +49,7 @@ public class Application extends android.app.Application {
 	public SerialPort getSerialPort() throws SecurityException, IOException, InvalidParameterException {
 		if (mSerialPort == null) {
 			String path="/dev/ttySAC2";
-			int baudrate=115200;
+			int baudrate=9600;
 			/* Open the serial port */
 			mSerialPort = new SerialPort(new File(path), baudrate, 0);
 		}

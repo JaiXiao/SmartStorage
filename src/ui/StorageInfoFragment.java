@@ -164,43 +164,8 @@ public class StorageInfoFragment extends BaseFragment{
 
 							String str = new String(buffer, 0, size);
 							receive = receive + str;
-//							System.out.println("^" + str.length()+"*"); 
-							// 
 							String sub = null;
 							int d = 0;
-							if(receive.split(",").length == 6 && receive.length() != 0 && receive.charAt(0)=='$' && receive.charAt(1)=='u'
-									&& receive.charAt(receive.length() - 1)=='#') {
-								System.out.println("*************");
-								String message = receive;
-								String[] arr = receive.split(",");
-								sub = arr[3];//select the part of data
-								d = Integer.parseInt(sub);
-								//Humidity
-							
-								if(arr[1].equals("09")) {
-									
-//									System.out.println("shidu = " + StorageSettingFragment.MAX_TEMPERATURE + "%RH");
-									System.out.println("==================shidu = " + sub + "%RH");
-									textshidu.setText("湿度：" + sub + "%RH");
-									if(d > StorageSettingFragment.MAX_HUMIDITY)//the warning value(you can change it depend on situation)
-									{
-										Drawable dr = getResources().getDrawable(R.drawable.barcolor);
-										ProgressBarshidu.setProgressDrawable(dr);
-									}
-									else
-									{
-										Drawable dr = getResources().getDrawable(R.drawable.nocolor);
-										ProgressBarshidu.setProgressDrawable(dr);
-									}
-									//change the bar according to the value of data
-									ProgressBarshidu.setProgress((int) d);
-								}
-								
-								
-								// =========
-								
-								
-							}
 							
 							if(flag)
 								hand = "";      
@@ -225,7 +190,7 @@ public class StorageInfoFragment extends BaseFragment{
 									receive = receive.substring(k, receive.length());
 									k = 0;
 									String temp[] = hand.split("\\,");	
-									if(temp.length==6 || temp[0].equals("u") || temp[0].equals("d")) {
+									if(temp.length==6 &&( temp[0].equals("u") || temp[0].equals("d") )) {
 										System.out.println("***" + temp[0]+ "***" + temp[1] + "***"+ temp[2]+ "***" + temp[3]+ "***" + temp[4] + "***"+ temp[5]);
 									
 										if(temp[1].equals("01")) {//shidu
@@ -248,7 +213,7 @@ public class StorageInfoFragment extends BaseFragment{
 										}else if(temp[1].equals("02")){//wendu
 											String wendu = temp[3];
 //											System.out.println("wendu = " + wendu + " ¡ãC");
-											textwendu.setText(" 温度： " + wendu + "℃");
+											textwendu.setText(" 温度：" + wendu + "℃");
 											d = Integer.parseInt(wendu);
 											if(d > StorageSettingFragment.MAX_TEMPERATURE)//the warning value(you can change it depend on situation)
 											{
@@ -297,77 +262,6 @@ public class StorageInfoFragment extends BaseFragment{
 			});
 
 		}
-		protected void onDataReceived(final String message){
-			getActivity().runOnUiThread(new Runnable() {
-				
-				public void run() {
-					String sub = null;
-					int d = 0;
-//					System.out.println(message);
-//					System.out.println(message.length());
-					if(message == "" || message == null)
-						System.out.println("null");
-				    //judge the format of data is true or not
-					if( message.length()!= 0 && message.charAt(0)=='$' && message.charAt(1)=='u'
-							&& message.charAt(message.length() - 1)=='#') {
-						System.out.println("the format of data is true");
-						sub = message.substring(3, message.length()-1);//select the part of data
-						d = Integer.parseInt(sub);
-						//Humidity
-						if(message.charAt(1)=='0') {
-							
-							System.out.println("shidu = "+ StorageSettingFragment.MAX_TEMPERATURE + "%RH");
-							System.out.println("shidu = "+ sub + "%RH");
-							textshidu.setText(" 湿度 "+sub + "%RH");
-							if(d>45)//the warning value(you can change it depend on situation)
-							{
-								Drawable dr=getResources().getDrawable(R.drawable.barcolor);
-								ProgressBarshidu.setProgressDrawable(dr);
-							}
-							else
-							{
-								Drawable dr=getResources().getDrawable(R.drawable.nocolor);
-								ProgressBarshidu.setProgressDrawable(dr);
-							}
-							//change the bar according to the value of data
-							ProgressBarshidu.setProgress((int) d);
-						}
-						
-						//Temperature
-						if(message.charAt(1)=='1') {
-							System.out.println("wendu = "+ sub +" ");
-							textwendu.setText(" 温度 "+sub + " ℃");
-							if(d>40)//the warning value(you can change it depend on situation)
-							{
-								Drawable dr=getResources().getDrawable(R.drawable.barcolor);
-								ProgressBarwendu.setProgressDrawable(dr);
-							}
-							else
-							{
-								Drawable dr=getResources().getDrawable(R.drawable.nocolor);
-								ProgressBarwendu.setProgressDrawable(dr);
-							}
-							//change the bar according to the value of data
-							ProgressBarwendu.setProgress((int) d);
-							
-						}
-						//Smoke
-						//Light
-						if(message.charAt(1)=='2') {
-
-						}
-						
-					}
-					else{
-						//if the format of data is not true(I don't know what to do )
-					}
-					
-				}
-				
-			});
-
-		}
-	
 	@Override
 	public void processClick(View v) {
 		// TODO Auto-generated method stub
