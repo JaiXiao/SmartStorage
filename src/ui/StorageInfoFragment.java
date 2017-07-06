@@ -7,10 +7,13 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidParameterException;
+import java.util.Date;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -26,6 +29,7 @@ import android_serialport_api.demo.Application;
 import android_serialport_api.demo.R;
 import android_serialport_api.demo.SerialPortActivity;
 import base.BaseFragment;
+import dbhelper.StorageDBOpenHelper;
 
 public class StorageInfoFragment extends BaseFragment{
 
@@ -42,7 +46,6 @@ public class StorageInfoFragment extends BaseFragment{
 	private Button kaoqiangjingbao;
 	
 	
-	
 	protected Application mApplication;
 	protected SerialPort mSerialPort;
 	protected OutputStream mOutputStream;
@@ -51,6 +54,11 @@ public class StorageInfoFragment extends BaseFragment{
 	private BufferedReader br;
 	
 	private String receive = "";
+	private int humiTempCount = 10;
+	private ContentValues values = null;
+	
+	private StorageDBOpenHelper oh; 
+	private SQLiteDatabase db = null;
 	
 	@Override
 	public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -124,6 +132,8 @@ public class StorageInfoFragment extends BaseFragment{
 	@Override
 	public void initData() {
 		// TODO Auto-generated method stub
+		oh = new StorageDBOpenHelper(getActivity());
+		db = oh.getWritableDatabase();
 		mApplication = (Application) getActivity().getApplication();
 		try {
 			mSerialPort = mApplication.getSerialPort();
@@ -177,85 +187,113 @@ public class StorageInfoFragment extends BaseFragment{
 								}
 							}       
 							k++;
-							while(k < receive.length()) {      
-								if(receive.charAt(k) != '#') {
-									hand = hand + String.valueOf(receive.charAt(k));
-									k++;
-									if(k == receive.length()) {
-										k = 0;       
-										flag = true;
-										break; 
-									}      
-								} else if(receive.charAt(k) == '#') {
-									receive = receive.substring(k, receive.length());
-									k = 0;
-									String temp[] = hand.split("\\,");	
-									if(temp.length==6 &&( temp[0].equals("u") || temp[0].equals("d") )) {
-										System.out.println("***" + temp[0]+ "***" + temp[1] + "***"+ temp[2]+ "***" + temp[3]+ "***" + temp[4] + "***"+ temp[5]);
-									
-										if(temp[1].equals("01")) {//shidu
-											String shidu = temp[3];
-//											System.out.println("shidu = " + shidu + "%RH");
-											textshidu.setText(" 湿度：" + shidu + "%RH");
-											d = Integer.parseInt(shidu);
-											if(d > StorageSettingFragment.MAX_HUMIDITY)//the warning value(you can change it depend on situation)
-											{
-												Drawable dr = getResources().getDrawable(R.drawable.barcolor);
-												ProgressBarshidu.setProgressDrawable(dr);
+							while(k < receive.length()) {
+								if(StorageSettingFragment.IS_OPEN == true){
+									if(receive.charAt(k) != '#') {
+										hand = hand + String.valueOf(receive.charAt(k));
+										k++;
+										if(k == receive.length()) {
+											k = 0;       
+											flag = true;
+											break; 
+										}      
+									} else if(receive.charAt(k) == '#') {
+										receive = receive.substring(k, receive.length());
+										k = 0;
+										String temp[] = hand.split("\\,");	
+										if(temp.length==6 &&( temp[0].equals("u") || temp[0].equals("d") )) {
+											System.out.println("***" + temp[0]+ "***" + temp[1] + "***"+ temp[2]+ "***" + temp[3]+ "***" + temp[4] + "***"+ temp[5]);
+											if (humiTempCount == 1)	{values = new ContentValues();}
+											if(temp[1].equals("01")) {//shidu
+												humiTempCount--;
+												String shidu = temp[3];
+	//											System.out.println("shidu = " + shidu + "%RH");
+												textshidu.setText(" 湿度：" + shidu + "%RH");
+												d = Integer.parseInt(shidu);
+												if(d > StorageSettingFragment.MAX_HUMIDITY)//the warning value(you can change it depend on situation)
+												{
+													Drawable dr = getResources().getDrawable(R.drawable.barcolor);
+													ProgressBarshidu.setProgressDrawable(dr);
+												}
+												else
+												{
+													Drawable dr = getResources().getDrawable(R.drawable.nocolor);
+													ProgressBarshidu.setProgressDrawable(dr);
+												}
+												//change the bar according to the value of data
+												ProgressBarshidu.setProgress((int) d);
+												if(humiTempCount <= 0){
+													values.put("Humidity", d);
+													System.out.println("d_Humidity = "+d);
+													if(!db.isOpen()) {
+														db = oh.getWritableDatabase();
+													}
+												}
+											}else if(temp[1].equals("02")){//wendu
+												String wendu = temp[3];
+	//											System.out.println("wendu = " + wendu + " ¡ãC");
+												textwendu.setText(" 温度：" + wendu + "℃");
+												d = Integer.parseInt(wendu);
+												if(d > StorageSettingFragment.MAX_TEMPERATURE)//the warning value(you can change it depend on situation)
+												{
+													Drawable dr = getResources().getDrawable(R.drawable.barcolor);
+													ProgressBarwendu.setProgressDrawable(dr);
+												}
+												else
+												{
+													Drawable dr = getResources().getDrawable(R.drawable.nocolor);
+													ProgressBarwendu.setProgressDrawable(dr);
+												}
+												//change the bar according to the value of data
+												ProgressBarwendu.setProgress((int) d);
+												if(humiTempCount <= 0){
+													values.put("Temper", d);
+													if(!db.isOpen()) {
+														db = oh.getWritableDatabase();
+													}
+													System.out.println("d_Temper = "+d);
+													values.put("date", new java.sql.Date(new Date().getTime()).toString());
+													db.insert("TempHumi", null, values);
+													values = null;
+													humiTempCount = 10;
+												}
+											}else if(temp[1].equals("13")){//yanwu
+												if(temp[3].equals("Y")){
+													yanwujingbao.setBackgroundColor(Color.RED);
+												}else{
+													yanwujingbao.setBackgroundColor(Color.parseColor("#99CC33"));
+												}
+											}else if(temp[1].equals("09")){//chaoshengbo
+												String chaoshengbo = temp[3];
+												d = Integer.parseInt(chaoshengbo);
+												if(d <= 3){
+													kaoqiangjingbao.setBackgroundColor(Color.RED);
+												}else{
+													kaoqiangjingbao.setBackgroundColor(Color.parseColor("#99CC33"));
+												}
 											}
-											else
-											{
-												Drawable dr = getResources().getDrawable(R.drawable.nocolor);
-												ProgressBarshidu.setProgressDrawable(dr);
+											else if(temp[1].equals("10")){//shengyin
+												if(temp[3].equals("1")){
+													fangdaojingbao.setBackgroundColor(Color.RED);
+												}else{
+													fangdaojingbao.setBackgroundColor(Color.parseColor("#99CC33"));
+												}
 											}
-											//change the bar according to the value of data
-											ProgressBarshidu.setProgress((int) d);
-										}else if(temp[1].equals("02")){//wendu
-											String wendu = temp[3];
-//											System.out.println("wendu = " + wendu + " ¡ãC");
-											textwendu.setText(" 温度：" + wendu + "℃");
-											d = Integer.parseInt(wendu);
-											if(d > StorageSettingFragment.MAX_TEMPERATURE)//the warning value(you can change it depend on situation)
-											{
-												Drawable dr = getResources().getDrawable(R.drawable.barcolor);
-												ProgressBarwendu.setProgressDrawable(dr);
+											else {
+												System.out.println("*******" + receive);
 											}
-											else
-											{
-												Drawable dr = getResources().getDrawable(R.drawable.nocolor);
-												ProgressBarwendu.setProgressDrawable(dr);
-											}
-											//change the bar according to the value of data
-											ProgressBarwendu.setProgress((int) d);
-										}else if(temp[1].equals("13")){//yanwu
-											if(temp[3].equals("Y")){
-												yanwujingbao.setBackgroundColor(Color.RED);
-											}else{
-												yanwujingbao.setBackgroundColor(Color.parseColor("#99CC33"));
-											}
-										}else if(temp[1].equals("09")){//chaoshengbo
-											String chaoshengbo = temp[3];
-											d = Integer.parseInt(chaoshengbo);
-											if(d <= 3){
-												kaoqiangjingbao.setBackgroundColor(Color.RED);
-											}else{
-												kaoqiangjingbao.setBackgroundColor(Color.parseColor("#99CC33"));
-											}
+//											//每采集10次温湿度的值，存储在数据库中
+//											if(humiTempCount >= humiTempCountValue){
+//												ContentValues values = new ContentValues();
+//												values.put("Humidity", );
+//												db.isOpen()
+//												db.insert("TempHumi", null, values);
+//											}
 										}
-										else if(temp[1].equals("10")){//shengyin
-											if(temp[3].equals("1")){
-												fangdaojingbao.setBackgroundColor(Color.RED);
-											}else{
-												fangdaojingbao.setBackgroundColor(Color.parseColor("#99CC33"));
-											}
-										}
-										else {
-											System.out.println("*******" + receive);
-										}
+										break;
 									}
-									break;
-								}
-							} 
+							}
+						}
 						}
 					}
 				}

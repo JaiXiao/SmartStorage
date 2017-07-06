@@ -31,6 +31,13 @@ public class StorageDBOpenHelper extends SQLiteOpenHelper{
 		// 4: 登记日期
 		
 		db.execSQL("create table goods(_id integer primary key autoincrement, name char(20), type char(20), value integer(10), date char(20))");
+	
+		//创建温湿度表
+		// 1：温度值
+		// 2: 湿度值
+		// 3: 记录日期
+		
+		db.execSQL("create table TempHumi(humidity decimal(8,2), temper(8,2), date char(20))");
 	}
 
 	@Override
