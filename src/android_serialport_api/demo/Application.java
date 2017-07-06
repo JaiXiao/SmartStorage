@@ -36,7 +36,15 @@ public class Application extends android.app.Application {
 
 	public SerialPortFinder mSerialPortFinder = new SerialPortFinder();
 	private SerialPort mSerialPort = null;
+	private int flag = 1;
+	
+	public int getFlag() {
+		return flag;
+	}
 
+	public void setFlag(int flag) {
+		this.flag = flag;
+	}
 	
 	public SerialPort getSerialPort() throws SecurityException, IOException, InvalidParameterException {
 		if (mSerialPort == null) {

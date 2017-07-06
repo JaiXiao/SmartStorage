@@ -66,14 +66,13 @@ public class StorageInfoFragment extends BaseFragment{
 		return view;
 	}
 	
-	
 	/**************************************************************************
-	¹¦ÄÜÃèÊö£º¶Á´®¿ÚµÄÏß³Ì
-	ÊäÈë²ÎÊý£ºÎÞ
-	Êä³ö²ÎÊý£ºÎÞ
-	·µ»Ø½á¹û£ºÎÞ
+	功能描述：读串口的线程
+	输入参数：无
+	输出参数：无
+	返回结果：无
 	*************************************************************************/
-	private class ReadThread extends Thread {
+		private class ReadThread extends Thread {
 		
 		@Override
 		public void run() {
@@ -98,10 +97,10 @@ public class StorageInfoFragment extends BaseFragment{
 	}
 	
 	/**************************************************************************
-	¹¦ÄÜÃèÊö£ºÏÔÊ¾´íÎóÐÅÏ¢
-	ÊäÈë²ÎÊý£º´íÎó·û
-	Êä³ö²ÎÊý£º´íÎóÐÅÏ¢£¬ÒÔ¶Ô»°¿òµÄÐÎÊ½³öÏÖ
-	·µ»Ø½á¹û£ºÎÞ
+	功能描述：显示错误信息
+	输入参数：错误符
+	输出参数：错误信息，以对话框的形式出现
+	返回结果：无
 	*************************************************************************/
 	private void DisplayError(int resourceId) {
 		AlertDialog.Builder b = new AlertDialog.Builder(getActivity());
@@ -142,12 +141,11 @@ public class StorageInfoFragment extends BaseFragment{
 			DisplayError(R.string.error_configuration);
 		}
 	}
-
 	/**************************************************************************
-	¹¦ÄÜÃèÊö£º½ÓÊÕ´®¿ÚÐÅÏ¢
-	ÊäÈë²ÎÊý£ºbufferÎª´®¿Ú»º³åÇø£¬sizeÎª»º³åÇø´óÐ¡
-	Êä³ö²ÎÊý£ºÎÞ
-	·µ»Ø½á¹û£ºÎÞ
+	功能描述：判断是否为合法数据
+	输入参数：接受的字符串
+	输出参数：无
+	返回结果：无
 	*************************************************************************/
 		public static boolean isNum(String str){		
 	    	return str.matches("^[-+]?(([0-9]+)([.]([0-9]+))?|([.]([0-9]+))?)$");
@@ -178,12 +176,12 @@ public class StorageInfoFragment extends BaseFragment{
 								sub = arr[3];//select the part of data
 								d = Integer.parseInt(sub);
 								//Humidity
-								System.out.println("==================message = " + message);
+							
 								if(arr[1].equals("09")) {
 									
 //									System.out.println("shidu = " + StorageSettingFragment.MAX_TEMPERATURE + "%RH");
 									System.out.println("==================shidu = " + sub + "%RH");
-									textshidu.setText(" Êª¶È£º " + sub + "%RH");
+									textshidu.setText("湿度：" + sub + "%RH");
 									if(d > StorageSettingFragment.MAX_HUMIDITY)//the warning value(you can change it depend on situation)
 									{
 										Drawable dr = getResources().getDrawable(R.drawable.barcolor);
@@ -233,7 +231,7 @@ public class StorageInfoFragment extends BaseFragment{
 										if(temp[1].equals("01")) {//shidu
 											String shidu = temp[3];
 //											System.out.println("shidu = " + shidu + "%RH");
-											textshidu.setText("Êª¶È£º " + shidu + "%RH");
+											textshidu.setText(" 湿度：" + shidu + "%RH");
 											d = Integer.parseInt(shidu);
 											if(d > StorageSettingFragment.MAX_HUMIDITY)//the warning value(you can change it depend on situation)
 											{
@@ -250,7 +248,7 @@ public class StorageInfoFragment extends BaseFragment{
 										}else if(temp[1].equals("02")){//wendu
 											String wendu = temp[3];
 //											System.out.println("wendu = " + wendu + " ¡ãC");
-											textwendu.setText("ÎÂ¶È£º " + wendu + " ¡ãC");
+											textwendu.setText(" 温度： " + wendu + "℃");
 											d = Integer.parseInt(wendu);
 											if(d > StorageSettingFragment.MAX_TEMPERATURE)//the warning value(you can change it depend on situation)
 											{
@@ -320,7 +318,7 @@ public class StorageInfoFragment extends BaseFragment{
 							
 							System.out.println("shidu = "+ StorageSettingFragment.MAX_TEMPERATURE + "%RH");
 							System.out.println("shidu = "+ sub + "%RH");
-							textshidu.setText(" Êª¶È£º "+sub + "%RH");
+							textshidu.setText(" 湿度 "+sub + "%RH");
 							if(d>45)//the warning value(you can change it depend on situation)
 							{
 								Drawable dr=getResources().getDrawable(R.drawable.barcolor);
@@ -337,8 +335,8 @@ public class StorageInfoFragment extends BaseFragment{
 						
 						//Temperature
 						if(message.charAt(1)=='1') {
-							System.out.println("wendu = "+ sub +" ¡ãC");
-							textwendu.setText(" ÎÂ¶È£º "+sub + " ¡ãC");
+							System.out.println("wendu = "+ sub +" ");
+							textwendu.setText(" 温度 "+sub + " ℃");
 							if(d>40)//the warning value(you can change it depend on situation)
 							{
 								Drawable dr=getResources().getDrawable(R.drawable.barcolor);
@@ -381,10 +379,10 @@ public class StorageInfoFragment extends BaseFragment{
 	}
 	
 	/**************************************************************************
-	¹¦ÄÜÃèÊö£ºÏú»Ùº¯Êý
-	ÊäÈë²ÎÊý£ºÎÞ
-	Êä³ö²ÎÊý£ºÎÞ
-	·µ»Ø½á¹û£ºÎÞ
+	功能描述：销毁函数
+	输入参数：无
+	输出参数：无
+	返回结果：无
 	*************************************************************************/
 	@Override
 	public void onDestroy() {
