@@ -7,21 +7,15 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android_serialport_api.demo.SerialPortActivity;
 
-/**
- * @ClassName: BaseActivity 
- * @Description: TODO 
- * @author 
- * @date 2017å¹´7æœˆ2æ—¥ ä¸Šåˆ11:26:51 
- */
 public abstract class BaseActivity extends FragmentActivity implements OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		initView();  // åˆå§‹åŒ–ç•Œé¢
-		initListener();  // åˆå§‹åŒ–ç›‘å¬å™¨
-		initData();  // åˆå§‹åŒ–æ•°æ®
+		initView();  // ³õÊ¼»¯View
+		initListener();  // ³õÊ¼»¯¼àÌıÆ÷
+		initData();  // ³õÊ¼»¯Êı¾İ
 	}
 	
 	public abstract void initView();

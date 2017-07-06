@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" 
+    android:paddingTop="8dp"
+    android:paddingBottom="2dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    >
+
+   <RelativeLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_btn_bg"
+        android:padding="8dp"
+        >
+        <TextView 
+            android:id="@+id/tv_good_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="年月日"
+            android:textSize="15sp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_alignParentRight="true"
+            />
+        <TextView 
+            android:id="@+id/tv_good_name"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="大闸蟹"
+            android:singleLine="true"
+            android:textSize="18sp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="3dp"
+            />
+        <TextView 
+            android:id="@+id/tv_good_type"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="水产"
+            android:textSize="15sp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/tv_good_name"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="3dp"
+            android:singleLine="true"
+            />
+        <TextView 
+            android:id="@+id/tv_good_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1000"
+            android:textSize="15sp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/tv_good_type"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="3dp"
+            android:singleLine="true"
+            />
+        
+    </RelativeLayout>
+    
+
+</LinearLayout>

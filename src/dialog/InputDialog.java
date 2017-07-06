@@ -8,8 +8,7 @@ import android.widget.TextView;
 import android_serialport_api.demo.R;
 
 public class InputDialog extends BaseDialog {
-	//输入数据界面
-	
+
 	private String title;
 	private TextView tv_inputdialog_title;
 	private EditText et_inputdialog_message_name;

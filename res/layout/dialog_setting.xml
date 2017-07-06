@@ -15,14 +15,22 @@
 	    android:textSize="18sp"
 	    android:layout_marginTop="15dp"
 	    /> 
-
-	<LinearLayout 
+	   <LinearLayout 
 	       android:orientation="horizontal"
 	       android:layout_width="match_parent"
 	       android:layout_height="wrap_content"
 	       >
+	       <TextView 
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="15dp"
+		    android:text="MAX"
+		    android:textColor="#000"
+		    android:textSize="18sp"
+		    android:layout_marginTop="15dp"
+		    />
 	       <EditText 
-		    android:id="@+id/et_settingdialog_message_min"
+		    android:id="@+id/et_settingdialog_message_max"
 		    android:layout_width="0dp"
 		    android:layout_weight="1"
 		    android:layout_height="wrap_content"
@@ -35,17 +43,23 @@
 		    android:background="@drawable/bg_btn_normal"
 		    android:singleLine="true"
 		    />
+	   </LinearLayout> 
+	<LinearLayout 
+	       android:orientation="horizontal"
+	       android:layout_width="match_parent"
+	       android:layout_height="wrap_content"
+	       >
 	       <TextView 
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:layout_marginLeft="15dp"
-		    android:text=" ~ "
+		    android:text="MIN"
 		    android:textColor="#000"
 		    android:textSize="18sp"
 		    android:layout_marginTop="15dp"
 		    />
 	       <EditText 
-		    android:id="@+id/et_settingdialog_message_max"
+		    android:id="@+id/et_settingdialog_message_min"
 		    android:layout_width="0dp"
 		    android:layout_weight="1"
 		    android:layout_height="wrap_content"

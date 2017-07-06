@@ -49,7 +49,7 @@ public class GoodsAdapter extends CursorAdapter{
 		private TextView tv_type;
 		private TextView tv_value;
 		private TextView tv_date;
-
+		
 		public ViewHolder(View view) {
 			tv_name = (TextView) view.findViewById(R.id.tv_good_name);
 			tv_type = (TextView) view.findViewById(R.id.tv_good_type);

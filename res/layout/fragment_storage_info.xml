@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="#fff"
+    android:orientation="vertical">
+    
+    <RelativeLayout 
+	      	android:id="@+id/rl_info_switch"
+	      	android:layout_width="match_parent"
+	    	android:layout_height="80dp"
+	   		android:orientation="horizontal"
+       >
+       <TextView
+          android:layout_width="150dp"
+          android:layout_height="80dp"
+          android:layout_centerHorizontal="true"
+          android:layout_centerVertical="true"
+          android:text="仓库环境监测界面"
+          android:textColor="#000"
+          android:textSize="18dp" />
+   	</RelativeLayout>
+   	
+    
+   	<RelativeLayout 
+	      	android:layout_width="match_parent"
+	    	android:layout_height="40dp"
+	   		android:orientation="horizontal"
+       >
+		<TextView
+	       android:id="@+id/textshidu"
+	       android:layout_width="wrap_content"
+	       android:layout_height="30dp"
+	       android:layout_weight="0.20"
+	       android:text="湿度： 30 %RH"
+	       android:textColor="#000"
+	       android:textSize="25dp" />
+		<ProgressBar
+	        android:id="@+id/progress_horizontal_shidu"
+	        style="?android:attr/progressBarStyleHorizontal"
+	        android:layout_width="300dp"
+	        android:layout_height="30dp"
+	        android:layout_alignParentRight="true"
+	        android:layout_alignTop="@+id/textshidu"
+	        android:layout_alignBottom="@+id/textshidu"
+	        android:max="100"
+	        android:progress="30"
+	        android:progressDrawable="@drawable/nocolor" />
+	</RelativeLayout>
+	
+   	
+ 	<RelativeLayout 
+       		android:layout_width="match_parent"
+	    	android:layout_height="40dp"
+	   		android:orientation="horizontal"
+       >
+		<TextView
+	        android:id="@+id/textwendu"
+	        android:layout_width="wrap_content"
+	        android:layout_height="30dp"
+	        android:text="温度： 35°C"
+	        android:textColor="#000"
+	        android:textSize="25dp" /> 
+    	<ProgressBar
+	        android:id="@+id/progress_horizontal_wendu"
+	        style="?android:attr/progressBarStyleHorizontal"
+	        android:layout_width="300dp"
+	        android:layout_height="30dp"
+	        android:layout_alignParentRight="true"
+	        android:layout_alignTop="@+id/textwendu"
+	        android:layout_alignBottom="@+id/text"
+	        android:max="100"
+	        android:progress="35"
+	        android:progressDrawable="@drawable/nocolor" />
+	</RelativeLayout>
+	
+ 	
+	<RelativeLayout 
+       		android:layout_width="match_parent"
+	    	android:layout_height="100dp"
+	   		android:orientation="horizontal"
+       >
+    	<TextView
+	        android:id="@+id/textyanwu"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentBottom="true"
+	        android:text="烟雾警报指示"
+	        android:textColor="#000"
+	        android:textSize="25dp" />
+    	<TextView
+	        android:id="@+id/textshengyin"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerHorizontal="true"
+	        android:layout_alignParentBottom="true"
+	        android:text="防盗警报指示"
+	        android:textColor="#000"
+	        android:textSize="25dp" />
+    	<TextView
+	        android:id="@+id/textchaoshengbo"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentRight="true"
+	        android:layout_alignParentBottom="true"
+	        android:text="靠墙警报指示"
+	        android:textColor="#000"
+	        android:textSize="25dp" />
+    </RelativeLayout>
+    
+	
+ 	<RelativeLayout 
+       		android:layout_width="match_parent"
+	    	android:layout_height="100dp"
+	   		android:orientation="horizontal"
+       >
+ 		<Button
+ 		    android:id="@+id/yanwujingbao"
+ 		    android:enabled="false"
+ 		    android:background="#99CC33"
+ 		    android:layout_width="150dp"
+ 		    android:layout_height="10dp"
+ 		    android:layout_alignParentLeft="true"
+ 		    android:layout_alignParentTop="true" 
+ 		    />
+ 		<Button
+ 		    android:id="@+id/fangdaojingbao"
+ 		    android:enabled="false"
+ 		    android:background="#99CC33"
+ 		    android:layout_width="150dp"
+ 		    android:layout_height="10dp"
+ 		    android:layout_centerInParent="true"
+ 		    android:layout_alignParentTop="true" 
+ 		    />
+ 		<Button
+ 		    android:id="@+id/kaoqiangjingbao"
+ 		    android:enabled="false"
+ 		    android:background="#99CC33"
+ 		    android:layout_width="150dp"
+ 		    android:layout_height="10dp"
+ 		    android:layout_alignParentRight="true"
+ 		    android:layout_alignParentTop="true" 
+ 		    />
+    </RelativeLayout>
+
+</LinearLayout>

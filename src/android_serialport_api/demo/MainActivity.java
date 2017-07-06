@@ -1,10 +1,11 @@
-/**
- * @ClassName: MainActivity 
- * @Description: TODO 
- * @author 
- * @date 2017年7月2日 上午11:22:49 
- */
-
+/*****************************************************************
+Œƒº˛√˚£∫MainActivity.java
+∞Ê±æ∫≈£∫v1.0
+¥¥Ω®»’∆⁄£∫2013-5-17
+◊˜’ﬂ£∫¥Û¡¨∑…œËø∆ºº”–œﬁπ´Àæ, www.fesxp.com
+÷˜“™∫Ø ˝√Ë ˆ£∫onCreate(Bundle savedInstanceState)ªÓ∂Ø¿‡µƒ»Îø⁄∫Ø ˝£ª
+–ﬁ∏ƒ»’÷æ£∫ Œﬁ
+*****************************************************************/
 package android_serialport_api.demo;
 import android.os.Bundle;
 import android.graphics.drawable.Drawable;
@@ -14,7 +15,6 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android_serialport_api.demo.R;
-
 
 public class MainActivity extends SerialPortActivity {					
 	private TextView textshidu; 
@@ -46,11 +46,12 @@ public class MainActivity extends SerialPortActivity {
  
 
 
-
+/**************************************************************************
+    π¶ƒ‹√Ë ˆ£∫ µ¿˝ªØonDataReceived∫Ø ˝”√”⁄¥Æø⁄Ω” ’–≈œ¢µƒœ‘ æ
+     ‰»Î≤Œ ˝£∫final byte[] buffer¥Æø⁄Ω” ’◊÷∑˚¥Æ£¨final int size◊÷∑˚¥Æ¥Û–°
+     ‰≥ˆ≤Œ ˝£∫Œﬁ
+*************************************************************************/
     
-    /* (non-Javadoc)
-     * @see android_serialport_api.demo.SerialPortActivity#onDataReceived(java.lang.String)
-     */
     protected void onDataReceived(final String message) {
 		runOnUiThread(new Runnable() {
 			
@@ -138,6 +139,7 @@ public class MainActivity extends SerialPortActivity {
 							textguangzhao.setText("光照： NO");
 							RatingBarguangzhao.setRating(0);
 						}
+						//*******ø…¿©’π**********
 					}
 					
 				}
