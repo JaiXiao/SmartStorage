@@ -282,13 +282,6 @@ public class StorageInfoFragment extends BaseFragment{
 											else {
 												System.out.println("*******" + receive);
 											}
-//											//每采集10次温湿度的值，存储在数据库中
-//											if(humiTempCount >= humiTempCountValue){
-//												ContentValues values = new ContentValues();
-//												values.put("Humidity", );
-//												db.isOpen()
-//												db.insert("TempHumi", null, values);
-//											}
 										}
 										break;
 									}
