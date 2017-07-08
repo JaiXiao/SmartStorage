@@ -112,7 +112,7 @@
 	
  	<RelativeLayout 
        		android:layout_width="match_parent"
-	    	android:layout_height="100dp"
+	    	android:layout_height="50dp"
 	   		android:orientation="horizontal"
        >
  		<Button
@@ -143,5 +143,16 @@
  		    android:layout_alignParentTop="true" 
  		    />
     </RelativeLayout>
+
+<RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/HumidityChart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>
 
 </LinearLayout>

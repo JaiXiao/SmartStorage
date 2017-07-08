@@ -7,16 +7,37 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.Legend.LegendForm;
+import com.github.mikephil.charting.components.LimitLine;
+import com.github.mikephil.charting.components.LimitLine.LimitLabelPosition;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.XAxis.XAxisPosition;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.components.YAxis.AxisDependency;
+import com.github.mikephil.charting.components.YAxis.YAxisLabelPosition;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,12 +75,16 @@ public class StorageInfoFragment extends BaseFragment{
 	private BufferedReader br;
 	
 	private String receive = "";
-	private int humiTempCount = 10;
+	private int humiTempCount = 1;//每接收humiTempCount个新数据，就存储一条温湿度数据到表单中
 	private ContentValues values = null;
 	
 	private StorageDBOpenHelper oh; 
 	private SQLiteDatabase db = null;
 	
+	private LineChart mChart;
+	private int drawCount = 1;
+	Cursor c = null;
+	LineData data = new LineData();
 	@Override
 	public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -71,6 +96,7 @@ public class StorageInfoFragment extends BaseFragment{
         yanwujingbao = (Button)view.findViewById(R.id.yanwujingbao);
         fangdaojingbao = (Button)view.findViewById(R.id.fangdaojingbao);
         kaoqiangjingbao = (Button)view.findViewById(R.id.kaoqiangjingbao);
+        mChart = (LineChart)view.findViewById(R.id.HumidityChart);
 		return view;
 	}
 	
@@ -134,6 +160,8 @@ public class StorageInfoFragment extends BaseFragment{
 		// TODO Auto-generated method stub
 		oh = new StorageDBOpenHelper(getActivity());
 		db = oh.getWritableDatabase();
+		c = db.query("TempHumi", null, null, null, null, null, null);
+		
 		mApplication = (Application) getActivity().getApplication();
 		try {
 			mSerialPort = mApplication.getSerialPort();
@@ -150,7 +178,178 @@ public class StorageInfoFragment extends BaseFragment{
 		} catch (InvalidParameterException e) {
 			DisplayError(R.string.error_configuration);
 		}
+		
+		initDrawGraph();//对温湿度折线图进行基本配置
 	}
+	
+	
+	/**************************************************************************
+	功能描述：初始化折现图（对温湿度折线图进行基本配置）
+	输入参数：无
+	输出参数：无
+	返回结果：无
+	*************************************************************************/
+	private void initDrawGraph(){
+		mChart.setDescription("仓库温湿度监测");  
+	      mChart.setNoDataTextDescription("暂时尚无数据");  
+	      // 可触摸
+	      mChart.setTouchEnabled(true);  
+	      // 可拖曳  
+	      mChart.setDragEnabled(true);  
+	      // 可缩放  
+	      mChart.setScaleEnabled(true);  
+	      mChart.setDrawGridBackground(false);  
+	      mChart.setPinchZoom(true);  
+	      // 设置图表的背景颜色  
+	      mChart.setBackgroundColor(Color.WHITE);  
+	      // 数据显示的颜色  
+	      data.setValueTextColor(Color.BLACK);  
+
+	      // 先增加一个空的数据，随后往里面动态添加  
+	      mChart.setData(data);  
+
+	      // 图表的注解(只有当数据集存在时候才生效)  
+	  	  Legend l = mChart.getLegend();  
+	      // 可以修改图表注解部分的位置  
+	      // l.setPosition(LegendPosition.LEFT_OF_CHART);  
+	      // 线性，也可是圆  
+	      l.setForm(LegendForm.LINE);  
+	      // 颜色  
+	      l.setTextColor(Color.RED);  
+	      
+	      // x坐标轴  
+	      XAxis xl = mChart.getXAxis();  
+	      xl.setTextColor(Color.BLACK);  
+	      xl.setDrawGridLines(false);  
+	      xl.setAvoidFirstLastClipping(true);  
+	      // 几个x坐标轴之间才绘制
+	      xl.setSpaceBetweenLabels(5);  
+	      // 如果false，那么x坐标轴将不可见  
+	      xl.setEnabled(true);  
+	      // 将X坐标轴放置在底部，默认是在顶部。  
+	      xl.setPosition(XAxisPosition.BOTTOM);  
+
+	      // 图表左边的y坐标轴线  
+	      YAxis leftAxis = mChart.getAxisLeft();  
+	      leftAxis.setTextColor(Color.BLACK);  
+	      // 最大值  
+	      leftAxis.setAxisMaxValue(40f);  
+	      // 最小值  
+	      leftAxis.setAxisMinValue(20f);  
+	      // 不一定要从0开始  
+	      leftAxis.setStartAtZero(false);  
+	      leftAxis.setDrawGridLines(true);  
+	      YAxis rightAxis = mChart.getAxisRight();  
+	      // 不显示图表的右边y坐标轴线  
+	      rightAxis.setEnabled(false);
+	}
+	
+	
+	
+	/**************************************************************************
+	功能描述：画温湿度折线图
+	输入参数：无
+	输出参数：无
+	返回结果：无
+	*************************************************************************/
+	private void drawGraph() {
+		 c = db.query("TempHumi", null, null, null, null, null, null);//cursor需要重新关联表单
+		 LineData data = mChart.getData();
+		 data.addXValue((data.getXValCount()) + ""); 
+		 
+		 LineDataSet humiditySet = data.getDataSetByIndex(0);//湿度折线图数据集合
+		 if (humiditySet == null) {  
+			 humiditySet = createLineDataSetHumi();  
+	            data.addDataSet(humiditySet);  
+	     }
+		 
+		 LineDataSet temperSet = data.getDataSetByIndex(1);//温度折线图数据集合
+		 if (temperSet == null) {  
+			 temperSet = createLineDataSetTemper();  
+	            data.addDataSet(temperSet);  
+	     }
+		 
+		 c.moveToLast();//将光标指向温湿度表单的最后一行
+		 String humidity = c.getString(c.getColumnIndex("humidity"));
+		 String temper = c.getString(c.getColumnIndex("temper"));
+		 System.out.println("c.getCount()="+c.getCount());//显示当前温湿度表单的总行数
+		 System.out.println("humidity = ****"+ humidity);
+		 System.out.println("temper = ****"+ temper);
+		 
+		 Entry humidityEntry = new Entry((Float.parseFloat(humidity)), humiditySet.getEntryCount());
+		 Entry temperEntry = new Entry((Float.parseFloat(temper)), temperSet.getEntryCount());
+		 
+		// 往LineData里面添加点。注意：addEntry的第二个参数即代表折线的下标索引。  
+	    // 因为本例有两个个统计折线，（依据下标索引）统计折线添加
+	     data.addEntry(humidityEntry, 0);  
+	     data.addEntry(temperEntry, 1);
+	     
+	    // 通知数据更新  
+	     mChart.notifyDataSetChanged();
+	     
+	    // 当前统计图表中最多在x轴坐标线上显示的总量  
+	     mChart.setVisibleXRangeMaximum(5);  
+	    // 此代码将刷新图表的绘图  
+	     mChart.moveViewToX(data.getXValCount() - 5);  
+	}
+	
+	
+	
+	/**************************************************************************
+	功能描述：创建湿度折线图数据集合
+	输入参数：无
+	输出参数：无
+	返回结果：无
+	*************************************************************************/	
+    private LineDataSet createLineDataSetHumi() {  
+        LineDataSet set = new LineDataSet(null, "动态添加的数据");  
+        set.setAxisDependency(AxisDependency.LEFT);  
+        
+        // 折线的颜色  
+        set.setColor(ColorTemplate.getHoloBlue());  
+//	    set.setColor(Color.parseColor("#6699FF"));;  
+        
+        set.setCircleColor(Color.BLACK);  
+        set.setLineWidth(10f);  
+        set.setCircleSize(5f);  
+        set.setFillAlpha(128);  
+        set.setFillColor(ColorTemplate.getHoloBlue());  
+        set.setHighLightColor(Color.GREEN);  
+        set.setValueTextColor(Color.RED);  
+        set.setValueTextSize(10f);  
+        set.setDrawValues(true);  
+        return set;  
+    } 
+    
+    
+    
+	/**************************************************************************
+	功能描述：创建温度折线图数据集合
+	输入参数：无
+	输出参数：无
+	返回结果：无
+	*************************************************************************/	
+    private LineDataSet createLineDataSetTemper() {  
+        LineDataSet set = new LineDataSet(null, "动态添加的数据");  
+        set.setAxisDependency(AxisDependency.LEFT);  
+        
+        // 折线的颜色  
+        set.setColor(Color.parseColor("#FFCC00"));  
+  
+        set.setCircleColor(Color.BLACK);  
+        set.setLineWidth(10f);  
+        set.setCircleSize(5f);  
+        set.setFillAlpha(128);  
+        set.setFillColor(ColorTemplate.getHoloBlue());  
+        set.setHighLightColor(Color.GREEN);  
+        set.setValueTextColor(Color.RED);  
+        set.setValueTextSize(10f);  
+        set.setDrawValues(true);  
+        return set;  
+    } 
+    
+    
+    
 	/**************************************************************************
 	功能描述：判断是否为合法数据
 	输入参数：接受的字符串
@@ -168,8 +367,7 @@ public class StorageInfoFragment extends BaseFragment{
 		protected void onDataReceived(final byte[] buffer, final int size){
 			getActivity().runOnUiThread(new Runnable() {
 				public void run() {
-					if(mApplication.getFlag()==1)
-					{
+					if(mApplication.getFlag()==1){
 						if (textwendu != null) {
 
 							String str = new String(buffer, 0, size);
@@ -255,7 +453,8 @@ public class StorageInfoFragment extends BaseFragment{
 													values.put("date", new java.sql.Date(new Date().getTime()).toString());
 													db.insert("TempHumi", null, values);
 													values = null;
-													humiTempCount = 10;
+													humiTempCount = 1;
+													drawCount--;
 												}
 											}else if(temp[1].equals("13")){//yanwu
 												if(temp[3].equals("Y")){
@@ -282,11 +481,16 @@ public class StorageInfoFragment extends BaseFragment{
 											else {
 												System.out.println("*******" + receive);
 											}
+											if(drawCount <= 0){
+												// 画温湿度折线图
+												drawGraph();
+												drawCount = 1;
+											}
 										}
 										break;
 									}
+								}
 							}
-						}
 						}
 					}
 				}
@@ -302,6 +506,8 @@ public class StorageInfoFragment extends BaseFragment{
 				break;
 		}
 	}
+	
+	
 	
 	/**************************************************************************
 	功能描述：销毁函数
