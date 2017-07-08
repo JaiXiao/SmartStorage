@@ -37,7 +37,7 @@ public class StorageDBOpenHelper extends SQLiteOpenHelper{
 		// 2: 湿度值
 		// 3: 记录日期
 		
-		db.execSQL("create table TempHumi(humidity decimal(8,2), temper(8,2), date char(20))");
+		db.execSQL("create table TempHumi(humidity decimal(8,2), temper decimal(8,2), date char(20))");
 	}
 
 	@Override
