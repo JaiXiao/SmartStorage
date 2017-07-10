@@ -1,13 +1,16 @@
 package ui;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -73,6 +76,9 @@ public class StorageInfoFragment extends BaseFragment{
 	private InputStream mInputStream;
 	private ReadThread mReadThread;
 	private BufferedReader br;
+	private BufferedWriter bw;
+	private String record_humidity;
+	private String record_temper;
 	
 	private String receive = "";
 	private int humiTempCount = 1;//每接收humiTempCount个新数据，就存储一条温湿度数据到表单中
@@ -85,6 +91,8 @@ public class StorageInfoFragment extends BaseFragment{
 	private int drawCount = 1;
 	Cursor c = null;
 	LineData data = new LineData();
+	
+	byte[] mBuffer;
 	@Override
 	public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -154,7 +162,6 @@ public class StorageInfoFragment extends BaseFragment{
 		// TODO Auto-generated method stub
 		
 	}
-
 	@Override
 	public void initData() {
 		// TODO Auto-generated method stub
@@ -166,8 +173,10 @@ public class StorageInfoFragment extends BaseFragment{
 		try {
 			mSerialPort = mApplication.getSerialPort();
 			mOutputStream = mSerialPort.getOutputStream();
+			
 			mInputStream = mSerialPort.getInputStream();
 			br = new BufferedReader(new InputStreamReader(mInputStream, "UTF8"));
+			bw = new BufferedWriter(new OutputStreamWriter(mOutputStream));
 			/* Create a receiving thread */
 			mReadThread = new ReadThread();
 			mReadThread.start();
@@ -178,6 +187,10 @@ public class StorageInfoFragment extends BaseFragment{
 		} catch (InvalidParameterException e) {
 			DisplayError(R.string.error_configuration);
 		}
+		
+		mBuffer = new byte[1024];
+		Arrays.fill(mBuffer, (byte) 0x55);
+		
 		
 		initDrawGraph();//对温湿度折线图进行基本配置
 	}
@@ -402,6 +415,7 @@ public class StorageInfoFragment extends BaseFragment{
 										if(temp.length==6 &&( temp[0].equals("u") || temp[0].equals("d") )) {
 											System.out.println("***" + temp[0]+ "***" + temp[1] + "***"+ temp[2]+ "***" + temp[3]+ "***" + temp[4] + "***"+ temp[5]);
 											if (humiTempCount == 1)	{values = new ContentValues();}
+											boolean flag_temphumi = false;
 											if(temp[1].equals("01")) {//shidu
 												humiTempCount--;
 												String shidu = temp[3];
@@ -412,6 +426,7 @@ public class StorageInfoFragment extends BaseFragment{
 												{
 													Drawable dr = getResources().getDrawable(R.drawable.barcolor);
 													ProgressBarshidu.setProgressDrawable(dr);
+													flag_temphumi = true;
 												}
 												else
 												{
@@ -436,6 +451,7 @@ public class StorageInfoFragment extends BaseFragment{
 												{
 													Drawable dr = getResources().getDrawable(R.drawable.barcolor);
 													ProgressBarwendu.setProgressDrawable(dr);
+													flag_temphumi = true;
 												}
 												else
 												{
@@ -456,26 +472,82 @@ public class StorageInfoFragment extends BaseFragment{
 													humiTempCount = 1;
 													drawCount--;
 												}
+												try {
+													if(flag_temphumi){
+														mOutputStream.write(new String("1").getBytes());
+													}
+													else {
+														mOutputStream.write(new String("2").getBytes());
+													}
+													mOutputStream.write('\n');
+												} catch (IOException e1) {
+													// TODO Auto-generated catch block
+													e1.printStackTrace();
+												}
+												
 											}else if(temp[1].equals("13")){//yanwu
 												if(temp[3].equals("Y")){
 													yanwujingbao.setBackgroundColor(Color.RED);
+													try {
+														mOutputStream.write(new String("5").getBytes());
+														mOutputStream.write('\n');
+													} catch (IOException e) {
+														// TODO Auto-generated catch block
+														e.printStackTrace();
+													}
 												}else{
 													yanwujingbao.setBackgroundColor(Color.parseColor("#99CC33"));
+													try {
+														mOutputStream.write(new String("6").getBytes());
+														mOutputStream.write('\n');
+													} catch (IOException e) {
+														// TODO Auto-generated catch block
+														e.printStackTrace();
+													}
 												}
 											}else if(temp[1].equals("09")){//chaoshengbo
 												String chaoshengbo = temp[3];
 												d = Integer.parseInt(chaoshengbo);
 												if(d <= 3){
 													kaoqiangjingbao.setBackgroundColor(Color.RED);
+													try {
+														mOutputStream.write(new String("7").getBytes());
+														mOutputStream.write('\n');
+													} catch (IOException e) {
+														// TODO Auto-generated catch block
+														e.printStackTrace();
+													}
 												}else{
 													kaoqiangjingbao.setBackgroundColor(Color.parseColor("#99CC33"));
+													try {
+														mOutputStream.write(new String("8").getBytes());
+														mOutputStream.write('\n');
+													} catch (IOException e) {
+														// TODO Auto-generated catch block
+														e.printStackTrace();
+													}
 												}
 											}
 											else if(temp[1].equals("10")){//shengyin
 												if(temp[3].equals("1")){
 													fangdaojingbao.setBackgroundColor(Color.RED);
+													try {
+														mOutputStream.write(new String("3").getBytes());
+														mOutputStream.write('\n');
+													} catch (IOException e) {
+														// TODO Auto-generated catch block
+														e.printStackTrace();
+													}
+													
 												}else{
 													fangdaojingbao.setBackgroundColor(Color.parseColor("#99CC33"));
+													try {
+														mOutputStream.write(new String("4").getBytes());
+														mOutputStream.write('\n');
+													} catch (IOException e) {
+														// TODO Auto-generated catch block
+														e.printStackTrace();
+													}
 												}
 											}
 											else {
@@ -486,6 +558,7 @@ public class StorageInfoFragment extends BaseFragment{
 												drawGraph();
 												drawCount = 1;
 											}
+											
 										}
 										break;
 									}
