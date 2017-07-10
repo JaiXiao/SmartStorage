@@ -1,0 +1,726 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         09/Jul/2017  16:17:57 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\Source\TestA.c  #
+#    Command line       =  -f F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530 #
+#                          -2.5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\ #
+#                          ..\..\Tools\CC2530DB\f8wCoord.cfg (-DCPU32MHZ      #
+#                          -DROOT=__near_func -DMAC_CFG_APP_PENDING_QUEUE=TRU #
+#                          E -DMAC_CFG_TX_DATA_MAX=5 -DMAC_CFG_TX_MAX=8       #
+#                          -DMAC_CFG_RX_MAX=5 -DZDO_COORDINATOR -DRTR_NWK)    #
+#                          -f F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530 #
+#                          -2.5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\ #
+#                          ..\..\Tools\CC2530DB\f8wConfig.cfg (-DZIGBEEPRO    #
+#                          -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR       #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DLINK_STATUS_JITTER_MASK=0x007F                   #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116                           #
+#                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
+#                          __code" -DGENERIC=__generic                        #
+#                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=1000        #
+#                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
+#                          -DREJOIN_POLL_RATE=440 F:\代码\代码\ZStack-CC2530- #
+#                          2.5.1a\ZStack-CC2530-2.5.1a\Projects\zstack\Sample #
+#                          s\TestA\Source\TestA.c -D ZTOOL_P1 -D MT_TASK -D   #
+#                          MT_SYS_FUNC -D MT_ZDO_FUNC -D LCD_SUPPORTED=DEBUG  #
+#                          -lC F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC253 #
+#                          0-2.5.1a\Projects\zstack\Samples\TestA\CC2530DB\Co #
+#                          ordinatorEB\List\ -lA F:\代码\代码\ZStack-CC2530-2 #
+#                          .5.1a\ZStack-CC2530-2.5.1a\Projects\zstack\Samples #
+#                          \TestA\CC2530DB\CoordinatorEB\List\                #
+#                          --diag_suppress Pe001,Pa010 -o                     #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\Coordi #
+#                          natorEB\Obj\ -e --no_code_motion --debug           #
+#                          --core=plain --dptr=16,1 --data_model=large        #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data_rom                  #
+#                          --nr_virtual_regs 16 -I F:\代码\代码\ZStack-CC2530 #
+#                          -2.5.1a\ZStack-CC2530-2.5.1a\Projects\zstack\Sampl #
+#                          es\TestA\CC2530DB\ -I F:\代码\代码\ZStack-CC2530-2 #
+#                          .5.1a\ZStack-CC2530-2.5.1a\Projects\zstack\Samples #
+#                          \TestA\CC2530DB\..\Source\ -I                      #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\ZMain\TI2530DB\ -I F:\代码\代码\ZStack-CC2530-2 #
+#                          .5.1a\ZStack-CC2530-2.5.1a\Projects\zstack\Samples #
+#                          \TestA\CC2530DB\..\..\..\..\..\Components\hal\incl #
+#                          ude\ -I F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-C #
+#                          C2530-2.5.1a\Projects\zstack\Samples\TestA\CC2530D #
+#                          B\..\..\..\..\..\Components\hal\target\CC2530EB\   #
+#                          -I F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530 #
+#                          -2.5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\ #
+#                          ..\..\..\..\Components\mac\include\ -I             #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\mac\high_level\ -I             #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\mac\low_level\srf04\ -I        #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\mac\low_level\srf04\single_chi #
+#                          p\ -I F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2 #
+#                          530-2.5.1a\Projects\zstack\Samples\TestA\CC2530DB\ #
+#                          ..\..\..\..\..\Components\mt\ -I                   #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\osal\include\ -I               #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\services\saddr\ -I             #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\services\sdata\ -I             #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\stack\af\ -I                   #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\stack\nwk\ -I                  #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\stack\sapi\ -I                 #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\stack\sec\ -I                  #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\stack\sys\ -I                  #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\stack\zdo\ -I                  #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\zmac\ -I                       #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\zmac\f8w\ -Ohz                 #
+#                          --require_prototypes                               #
+#    List file          =  F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\Coordi #
+#                          natorEB\List\TestA.lst                             #
+#    Object file        =  F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\Coordi #
+#                          natorEB\Obj\TestA.r51                              #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\TestA\Source\TestA.c
+      1          /******************************************************************************
+      2            Filename:       TestA.c
+      3            Revised:        $Date: 2012-03-07 01:04:58 -0800 (Wed, 07 Mar 2012) $
+      4            Revision:       $Revision: 29656 $
+      5          
+      6            Description:    Generic Application (no Profile).
+      7          
+      8          
+      9            Copyright 2004-2012 Texas Instruments Incorporated. All rights reserved.
+     10          
+     11            IMPORTANT: Your use of this Software is limited to those specific rights
+     12            granted under the terms of a software license agreement between the user
+     13            who downloaded the software, his/her employer (which must be your employer)
+     14            and Texas Instruments Incorporated (the "License"). You may not use this
+     15            Software unless you agree to abide by the terms of the License. The License
+     16            limits your use, and you acknowledge, that the Software may not be modified,
+     17            copied or distributed unless embedded on a Texas Instruments microcontroller
+     18            or used solely and exclusively in conjunction with a Texas Instruments radio
+     19            frequency transceiver, which is integrated into your product. Other than for
+     20            the foregoing purpose, you may not use, reproduce, copy, prepare derivative
+     21            works of, modify, distribute, perform, display or sell this Software and/or
+     22            its documentation for any purpose.
+     23          
+     24            YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+     25            PROVIDED 揂S IS?WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+     26            INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+     27            NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+     28            TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+     29            NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER
+     30            LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+     31            INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE
+     32            OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT
+     33            OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+     34            (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+     35          
+     36            Should you have any questions regarding your right to use this Software,
+     37            contact Texas Instruments Incorporated at www.TI.com.
+     38          ******************************************************************************/
+     39          
+     40          /*********************************************************************
+     41            This application isn't intended to do anything useful, it is
+     42            intended to be a simple example of an application's structure.
+     43          
+     44            This application sends "Hello World" to another "Generic"
+     45            application every 5 seconds.  The application will also
+     46            receives "Hello World" packets.
+     47          
+     48            The "Hello World" messages are sent/received as MSG type message.
+     49          
+     50            This applications doesn't have a profile, so it handles everything
+     51            directly - itself.
+     52          
+     53            Key control:
+     54              SW1:
+     55              SW2:  initiates end device binding
+     56              SW3:
+     57              SW4:  initiates a match description request
+     58          *********************************************************************/
+     59          
+     60          /*********************************************************************
+     61           * INCLUDES
+     62           */
+     63          #include "OSAL.h"
+     64          #include "AF.h"
+     65          #include "ZDApp.h"
+     66          #include "ZDObject.h"
+     67          #include "ZDProfile.h"
+     68          
+     69          #include "TestA.h"
+     70          #include "DebugTrace.h"
+     71          
+     72          #if !defined( WIN32 )
+     73            #include "OnBoard.h"
+     74          #endif
+     75          
+     76          /* HAL */
+     77          #include "hal_lcd.h"
+     78          #include "hal_led.h"
+     79          #include "hal_key.h"
+     80          #include "hal_uart.h"
+     81          
+     82          /* RTOS */
+     83          #if defined( IAR_ARMCM3_LM )
+     84          #include "RTOS_App.h"
+     85          #include "DHT11.h"
+     86          #endif  
+     87          
+     88          /*********************************************************************
+     89           * MACROS
+     90           */
+     91          
+     92          /*********************************************************************
+     93           * CONSTANTS
+     94           */
+     95          
+     96          /*********************************************************************
+     97           * TYPEDEFS
+     98           */
+     99          
+    100          /*********************************************************************
+    101           * GLOBAL VARIABLES
+    102           */
+    103          // This list should be filled with Application specific Cluster IDs.
+    104          const cId_t TestA_ClusterList[TestA_MAX_CLUSTERS] =
+    105          {
+    106            TestA_CLUSTERID
+    107          };
+    108          
+    109          const SimpleDescriptionFormat_t TestA_SimpleDesc =
+    110          {
+    111            TestA_ENDPOINT,              //  int Endpoint;
+    112            TestA_PROFID,                //  uint16 AppProfId[2];
+    113            TestA_DEVICEID,              //  uint16 AppDeviceId[2];
+    114            TestA_DEVICE_VERSION,        //  int   AppDevVer:4;
+    115            TestA_FLAGS,                 //  int   AppFlags:4;
+    116            TestA_MAX_CLUSTERS,          //  byte  AppNumInClusters;
+    117            (cId_t *)TestA_ClusterList,  //  byte *pAppInClusterList;
+    118            TestA_MAX_CLUSTERS,          //  byte  AppNumInClusters;
+    119            (cId_t *)TestA_ClusterList   //  byte *pAppInClusterList;
+    120          };
+    121          
+    122          // This is the Endpoint/Interface description.  It is defined here, but
+    123          // filled-in in TestA_Init().  Another way to go would be to fill
+    124          // in the structure here and make it a "const" (in code space).  The
+    125          // way it's defined in this sample app it is define in RAM.
+    126          endPointDesc_t TestA_epDesc;
+    127          
+    128          /*********************************************************************
+    129           * EXTERNAL VARIABLES
+    130           */
+    131          
+    132          /*********************************************************************
+    133           * EXTERNAL FUNCTIONS
+    134           */
+    135          
+    136          /*********************************************************************
+    137           * LOCAL VARIABLES
+    138           */
+    139          byte TestA_TaskID;   // Task ID for internal task/event processing
+    140                                    // This variable will be received when
+    141                                    // TestA_Init() is called.
+    142          devStates_t TestA_NwkState;
+    143          
+    144          
+    145          byte TestA_TransID;  // This is the unique message ID (counter)
+    146          
+    147          afAddrType_t TestA_DstAddr;
+    148          
+    149          /*********************************************************************
+    150           * LOCAL FUNCTIONS
+    151           */
+    152          static void TestA_ProcessZDOMsgs( zdoIncomingMsg_t *inMsg );
+    153          static void TestA_HandleKeys( byte shift, byte keys );
+    154          static void TestA_MessageMSGCB( afIncomingMSGPacket_t *pckt );
+    155          static void TestA_SendTheMessage( void );
+    156          
+    157          #if defined( IAR_ARMCM3_LM )
+    158          static void TestA_ProcessRtosMessage( void );
+    159          #endif
+    160          
+    161          /*********************************************************************
+    162           * NETWORK LAYER CALLBACKS
+    163           */
+    164          
+    165          /*********************************************************************
+    166           * PUBLIC FUNCTIONS
+    167           */
+    168          
+    169          /*********************************************************************
+    170           * @fn      TestA_Init
+    171           *
+    172           * @brief   Initialization function for the Generic App Task.
+    173           *          This is called during initialization and should contain
+    174           *          any application specific initialization (ie. hardware
+    175           *          initialization/setup, table initialization, power up
+    176           *          notificaiton ... ).
+    177           *
+    178           * @param   task_id - the ID assigned by OSAL.  This ID should be
+    179           *                    used to send messages and set timers.
+    180           *
+    181           * @return  none
+    182           */
+    183          void TestA_Init( uint8 task_id )
+    184          {
+    185            TestA_TaskID = task_id;
+    186            TestA_NwkState = DEV_INIT;
+    187            TestA_TransID = 0;
+    188          
+    189            // Device hardware initialization can be added here or in main() (Zmain.c).
+    190            // If the hardware is application specific - add it here.
+    191            // If the hardware is other parts of the device add it in main().
+    192          
+    193            TestA_DstAddr.addrMode = (afAddrMode_t)AddrNotPresent;
+    194            TestA_DstAddr.endPoint = 0;
+    195            TestA_DstAddr.addr.shortAddr = 0;
+    196          
+    197            // Fill out the endpoint description.
+    198            TestA_epDesc.endPoint = TestA_ENDPOINT;
+    199            TestA_epDesc.task_id = &TestA_TaskID;
+    200            TestA_epDesc.simpleDesc
+    201                      = (SimpleDescriptionFormat_t *)&TestA_SimpleDesc;
+    202            TestA_epDesc.latencyReq = noLatencyReqs;
+    203          
+    204            // Register the endpoint description with the AF
+    205            afRegister( &TestA_epDesc );
+    206          
+    207            // Register for all key events - This app will handle all key events
+    208            RegisterForKeys( TestA_TaskID );
+    209          
+    210            // Update the display
+    211          #if defined ( LCD_SUPPORTED )
+    212            HalLcdWriteString( "TestA", HAL_LCD_LINE_1 );
+    213          #endif
+    214          
+    215            ZDO_RegisterForZDOMsg( TestA_TaskID, End_Device_Bind_rsp );
+    216            ZDO_RegisterForZDOMsg( TestA_TaskID, Match_Desc_rsp );
+    217          
+    218          #if defined( IAR_ARMCM3_LM )
+    219            // Register this task with RTOS task initiator
+    220            RTOS_RegisterApp( task_id, TestA_RTOS_MSG_EVT );
+    221          #endif
+    222          }
+    223          
+    224          /*********************************************************************
+    225           * @fn      TestA_ProcessEvent
+    226           *
+    227           * @brief   Generic Application Task event processor.  This function
+    228           *          is called to process all events for the task.  Events
+    229           *          include timers, messages and any other user defined events.
+    230           *
+    231           * @param   task_id  - The OSAL assigned task ID.
+    232           * @param   events - events to process.  This is a bit map and can
+    233           *                   contain more than one event.
+    234           *
+    235           * @return  none
+    236           */
+    237          uint16 TestA_ProcessEvent( uint8 task_id, uint16 events )
+    238          {
+    239            afIncomingMSGPacket_t *MSGpkt;
+    240            afDataConfirm_t *afDataConfirm;
+    241          
+    242            // Data Confirmation message fields
+    243            byte sentEP;
+    244            ZStatus_t sentStatus;
+    245            byte sentTransID;       // This should match the value sent
+    246            (void)task_id;  // Intentionally unreferenced parameter
+    247          
+    248            if ( events & SYS_EVENT_MSG )
+    249            {
+    250              MSGpkt = (afIncomingMSGPacket_t *)osal_msg_receive( TestA_TaskID );
+    251              while ( MSGpkt )
+    252              {
+    253                switch ( MSGpkt->hdr.event )
+    254                {
+    255                  case ZDO_CB_MSG:
+    256                    TestA_ProcessZDOMsgs( (zdoIncomingMsg_t *)MSGpkt );
+    257                    break;
+    258          
+    259                  case KEY_CHANGE:
+    260                    TestA_HandleKeys( ((keyChange_t *)MSGpkt)->state, ((keyChange_t *)MSGpkt)->keys );
+    261                    break;
+    262          
+    263                  case AF_DATA_CONFIRM_CMD:
+    264                    // This message is received as a confirmation of a data packet sent.
+    265                    // The status is of ZStatus_t type [defined in ZComDef.h]
+    266                    // The message fields are defined in AF.h
+    267                    afDataConfirm = (afDataConfirm_t *)MSGpkt;
+    268                    sentEP = afDataConfirm->endpoint;
+    269                    sentStatus = afDataConfirm->hdr.status;
+    270                    sentTransID = afDataConfirm->transID;
+    271                    (void)sentEP;
+    272                    (void)sentTransID;
+    273          
+    274                    // Action taken when confirmation is received.
+    275                    if ( sentStatus != ZSuccess )
+    276                    {
+    277                      // The data wasn't delivered -- Do something
+    278                    }
+    279                    break;
+    280          
+    281                  case AF_INCOMING_MSG_CMD:
+    282                    TestA_MessageMSGCB( MSGpkt );
+    283                    break;
+    284          
+    285                  case ZDO_STATE_CHANGE:
+    286                    TestA_NwkState = (devStates_t)(MSGpkt->hdr.status);
+    287                    if ( (TestA_NwkState == DEV_ZB_COORD)
+    288                        || (TestA_NwkState == DEV_ROUTER)
+    289                        || (TestA_NwkState == DEV_END_DEVICE) )
+    290                    {
+    291                      // Start sending "the" message in a regular interval.
+    292                      osal_start_timerEx( TestA_TaskID,
+    293                                          TestA_SEND_MSG_EVT,
+    294                                          TestA_SEND_MSG_TIMEOUT );
+    295                    }
+    296                    break;
+    297          
+    298                  default:
+    299                    break;
+    300                }
+    301          
+    302                // Release the memory
+    303                osal_msg_deallocate( (uint8 *)MSGpkt );
+    304          
+    305                // Next
+    306                MSGpkt = (afIncomingMSGPacket_t *)osal_msg_receive( TestA_TaskID );
+    307              }
+    308          
+    309              // return unprocessed events
+    310              return (events ^ SYS_EVENT_MSG);
+    311            }
+    312          
+    313            // Send a message out - This event is generated by a timer
+    314            //  (setup in TestA_Init()).
+    315            if ( events & TestA_SEND_MSG_EVT )
+    316            {
+    317              // Send "the" message
+    318              TestA_SendTheMessage();
+    319              DHT11();  
+                     ^
+Error[Pe223]: function "DHT11" declared implicitly
+    320              
+    321          
+    322              // Setup to send message again
+    323              osal_start_timerEx( TestA_TaskID,
+    324                                  TestA_SEND_MSG_EVT,
+    325                                  TestA_SEND_MSG_TIMEOUT );
+    326          
+    327              // return unprocessed events
+    328              return (events ^ TestA_SEND_MSG_EVT);
+    329            }
+    330          
+    331            
+    332          #if defined( IAR_ARMCM3_LM )
+    333            // Receive a message from the RTOS queue
+    334            if ( events & TestA_RTOS_MSG_EVT )
+    335            {
+    336              // Process message from RTOS queue
+    337              TestA_ProcessRtosMessage();
+    338          
+    339              // return unprocessed events
+    340              return (events ^ TestA_RTOS_MSG_EVT);
+    341            }
+    342          #endif
+    343          
+    344            // Discard unknown events
+    345            return 0;
+    346          }
+    347          
+    348          /*********************************************************************
+    349           * Event Generation Functions
+    350           */
+    351          
+    352          /*********************************************************************
+    353           * @fn      TestA_ProcessZDOMsgs()
+    354           *
+    355           * @brief   Process response messages
+    356           *
+    357           * @param   none
+    358           *
+    359           * @return  none
+    360           */
+    361          static void TestA_ProcessZDOMsgs( zdoIncomingMsg_t *inMsg )
+    362          {
+    363            switch ( inMsg->clusterID )
+    364            {
+    365              case End_Device_Bind_rsp:
+    366                if ( ZDO_ParseBindRsp( inMsg ) == ZSuccess )
+    367                {
+    368                  // Light LED
+    369                  HalLedSet( HAL_LED_4, HAL_LED_MODE_ON );
+    370                }
+    371          #if defined( BLINK_LEDS )
+    372                else
+    373                {
+    374                  // Flash LED to show failure
+    375                  HalLedSet ( HAL_LED_4, HAL_LED_MODE_FLASH );
+    376                }
+    377          #endif
+    378                break;
+    379          
+    380              case Match_Desc_rsp:
+    381                {
+    382                  ZDO_ActiveEndpointRsp_t *pRsp = ZDO_ParseEPListRsp( inMsg );
+    383                  if ( pRsp )
+    384                  {
+    385                    if ( pRsp->status == ZSuccess && pRsp->cnt )
+    386                    {
+    387                      TestA_DstAddr.addrMode = (afAddrMode_t)Addr16Bit;
+    388                      TestA_DstAddr.addr.shortAddr = pRsp->nwkAddr;
+    389                      // Take the first endpoint, Can be changed to search through endpoints
+    390                      TestA_DstAddr.endPoint = pRsp->epList[0];
+    391          
+    392                      // Light LED
+    393                      HalLedSet( HAL_LED_4, HAL_LED_MODE_ON );
+    394                    }
+    395                    osal_mem_free( pRsp );
+    396                  }
+    397                }
+    398                break;
+    399            }
+    400          }
+    401          
+    402          /*********************************************************************
+    403           * @fn      TestA_HandleKeys
+    404           *
+    405           * @brief   Handles all key events for this device.
+    406           *
+    407           * @param   shift - true if in shift/alt.
+    408           * @param   keys - bit field for key events. Valid entries:
+    409           *                 HAL_KEY_SW_4
+    410           *                 HAL_KEY_SW_3
+    411           *                 HAL_KEY_SW_2
+    412           *                 HAL_KEY_SW_1
+    413           *
+    414           * @return  none
+    415           */
+    416          static void TestA_HandleKeys( uint8 shift, uint8 keys )
+    417          {
+    418            zAddrType_t dstAddr;
+    419          
+    420            // Shift is used to make each button/switch dual purpose.
+    421            if ( shift )
+    422            {
+    423              if ( keys & HAL_KEY_SW_1 )
+    424              {
+    425              }
+    426              if ( keys & HAL_KEY_SW_2 )
+    427              {
+    428              }
+    429              if ( keys & HAL_KEY_SW_3 )
+    430              {
+    431              }
+    432              if ( keys & HAL_KEY_SW_4 )
+    433              {
+    434              }
+    435            }
+    436            else
+    437            {
+    438              if ( keys & HAL_KEY_SW_1 )
+    439              {
+    440                // Since SW1 isn't used for anything else in this application...
+    441          #if defined( SWITCH1_BIND )
+    442                // we can use SW1 to simulate SW2 for devices that only have one switch,
+    443                keys |= HAL_KEY_SW_2;
+    444          #elif defined( SWITCH1_MATCH )
+    445                // or use SW1 to simulate SW4 for devices that only have one switch
+    446                keys |= HAL_KEY_SW_4;
+    447          #endif
+    448              }
+    449          
+    450              if ( keys & HAL_KEY_SW_2 )
+    451              {
+    452                HalLedSet ( HAL_LED_4, HAL_LED_MODE_OFF );
+    453          
+    454                // Initiate an End Device Bind Request for the mandatory endpoint
+    455                dstAddr.addrMode = Addr16Bit;
+    456                dstAddr.addr.shortAddr = 0x0000; // Coordinator
+    457                ZDP_EndDeviceBindReq( &dstAddr, NLME_GetShortAddr(),
+    458                                      TestA_epDesc.endPoint,
+    459                                      TestA_PROFID,
+    460                                      TestA_MAX_CLUSTERS, (cId_t *)TestA_ClusterList,
+    461                                      TestA_MAX_CLUSTERS, (cId_t *)TestA_ClusterList,
+    462                                      FALSE );
+    463              }
+    464          
+    465              if ( keys & HAL_KEY_SW_3 )
+    466              {
+    467              }
+    468          
+    469              if ( keys & HAL_KEY_SW_4 )
+    470              {
+    471                HalLedSet ( HAL_LED_4, HAL_LED_MODE_OFF );
+    472                // Initiate a Match Description Request (Service Discovery)
+    473                dstAddr.addrMode = AddrBroadcast;
+    474                dstAddr.addr.shortAddr = NWK_BROADCAST_SHORTADDR;
+    475                ZDP_MatchDescReq( &dstAddr, NWK_BROADCAST_SHORTADDR,
+    476                                  TestA_PROFID,
+    477                                  TestA_MAX_CLUSTERS, (cId_t *)TestA_ClusterList,
+    478                                  TestA_MAX_CLUSTERS, (cId_t *)TestA_ClusterList,
+    479                                  FALSE );
+    480              }
+    481            }
+    482          }
+    483          
+    484          /*********************************************************************
+    485           * LOCAL FUNCTIONS
+    486           */
+    487          
+    488          /*********************************************************************
+    489           * @fn      TestA_MessageMSGCB
+    490           *
+    491           * @brief   Data message processor callback.  This function processes
+    492           *          any incoming data - probably from other devices.  So, based
+    493           *          on cluster ID, perform the intended action.
+    494           *
+    495           * @param   none
+    496           *
+    497           * @return  none
+    498           */
+    499          static void TestA_MessageMSGCB( afIncomingMSGPacket_t *pkt )
+    500          {
+    501            switch ( pkt->clusterId )
+    502            {
+    503              case TestA_CLUSTERID:
+    504                // "the" message
+    505          #if defined( LCD_SUPPORTED )
+    506                HalLcdWriteScreen( (char*)pkt->cmd.Data, "rcvd" );
+    507          #elif defined( WIN32 )
+    508                WPRINTSTR( pkt->cmd.Data );
+    509          #endif
+    510                break;
+    511            }
+    512          }
+    513          
+    514          /*********************************************************************
+    515           * @fn      TestA_SendTheMessage
+    516           *
+    517           * @brief   Send "the" message.
+    518           *
+    519           * @param   none
+    520           *
+    521           * @return  none
+    522           */
+    523          static void TestA_SendTheMessage( void )
+    524          {
+    525            extern unsigned char Temperature,Humidity;
+    526            char theMessageData[] = "Hello World";
+    527            theMessageData[0]=Temperature;
+    528            theMessageData[1]=Humidity;
+    529          
+    530            if ( AF_DataRequest( &TestA_DstAddr, &TestA_epDesc,
+    531                                 TestA_CLUSTERID,
+    532                                 (byte)osal_strlen( theMessageData ) + 1,
+    533                                 (byte *)&theMessageData,
+    534                                 &TestA_TransID,
+    535                                 AF_DISCV_ROUTE, AF_DEFAULT_RADIUS ) == afStatus_SUCCESS )
+    536            {
+    537              // Successfully requested to be sent.
+    538            }
+    539            else
+    540            {
+    541              // Error occurred in request to send.
+    542            }
+    543          }
+    544          
+    545          #if defined( IAR_ARMCM3_LM )
+    546          /*********************************************************************
+    547           * @fn      TestA_ProcessRtosMessage
+    548           *
+    549           * @brief   Receive message from RTOS queue, send response back.
+    550           *
+    551           * @param   none
+    552           *
+    553           * @return  none
+    554           */
+    555          static void TestA_ProcessRtosMessage( void )
+    556          {
+    557            osalQueue_t inMsg;
+    558          
+    559            if ( osal_queue_receive( OsalQueue, &inMsg, 0 ) == pdPASS )
+    560            {
+    561              uint8 cmndId = inMsg.cmnd;
+    562              uint32 counter = osal_build_uint32( inMsg.cbuf, 4 );
+    563          
+    564              switch ( cmndId )
+    565              {
+    566                case CMD_INCR:
+    567                  counter += 1;  /* Increment the incoming counter */
+    568                                 /* Intentionally fall through next case */
+    569          
+    570                case CMD_ECHO:
+    571                {
+    572                  userQueue_t outMsg;
+    573          
+    574                  outMsg.resp = RSP_CODE | cmndId;  /* Response ID */
+    575                  osal_buffer_uint32( outMsg.rbuf, counter );    /* Increment counter */
+    576                  osal_queue_send( UserQueue1, &outMsg, 0 );  /* Send back to UserTask */
+    577                  break;
+    578                }
+    579                
+    580                default:
+    581                  break;  /* Ignore unknown command */    
+    582              }
+    583            }
+    584          }
+    585          #endif
+    586          
+    587          /*********************************************************************
+    588           */
+
+Errors: 1
+Warnings: none

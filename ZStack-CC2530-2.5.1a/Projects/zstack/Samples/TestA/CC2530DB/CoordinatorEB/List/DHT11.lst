@@ -1,0 +1,276 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.3.10338/W32 for 8051         09/Jul/2017  16:18:16 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\Source\DHT11.c  #
+#    Command line       =  -f F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530 #
+#                          -2.5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\ #
+#                          ..\..\Tools\CC2530DB\f8wCoord.cfg (-DCPU32MHZ      #
+#                          -DROOT=__near_func -DMAC_CFG_APP_PENDING_QUEUE=TRU #
+#                          E -DMAC_CFG_TX_DATA_MAX=5 -DMAC_CFG_TX_MAX=8       #
+#                          -DMAC_CFG_RX_MAX=5 -DZDO_COORDINATOR -DRTR_NWK)    #
+#                          -f F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530 #
+#                          -2.5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\ #
+#                          ..\..\Tools\CC2530DB\f8wConfig.cfg (-DZIGBEEPRO    #
+#                          -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR       #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DLINK_STATUS_JITTER_MASK=0x007F                   #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116                           #
+#                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
+#                          __code" -DGENERIC=__generic                        #
+#                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=1000        #
+#                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
+#                          -DREJOIN_POLL_RATE=440 F:\代码\代码\ZStack-CC2530- #
+#                          2.5.1a\ZStack-CC2530-2.5.1a\Projects\zstack\Sample #
+#                          s\TestA\Source\DHT11.c -D ZTOOL_P1 -D MT_TASK -D   #
+#                          MT_SYS_FUNC -D MT_ZDO_FUNC -D LCD_SUPPORTED=DEBUG  #
+#                          -lC F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC253 #
+#                          0-2.5.1a\Projects\zstack\Samples\TestA\CC2530DB\Co #
+#                          ordinatorEB\List\ -lA F:\代码\代码\ZStack-CC2530-2 #
+#                          .5.1a\ZStack-CC2530-2.5.1a\Projects\zstack\Samples #
+#                          \TestA\CC2530DB\CoordinatorEB\List\                #
+#                          --diag_suppress Pe001,Pa010 -o                     #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\Coordi #
+#                          natorEB\Obj\ -e --no_code_motion --debug           #
+#                          --core=plain --dptr=16,1 --data_model=large        #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data_rom                  #
+#                          --nr_virtual_regs 16 -I F:\代码\代码\ZStack-CC2530 #
+#                          -2.5.1a\ZStack-CC2530-2.5.1a\Projects\zstack\Sampl #
+#                          es\TestA\CC2530DB\ -I F:\代码\代码\ZStack-CC2530-2 #
+#                          .5.1a\ZStack-CC2530-2.5.1a\Projects\zstack\Samples #
+#                          \TestA\CC2530DB\..\Source\ -I                      #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\ZMain\TI2530DB\ -I F:\代码\代码\ZStack-CC2530-2 #
+#                          .5.1a\ZStack-CC2530-2.5.1a\Projects\zstack\Samples #
+#                          \TestA\CC2530DB\..\..\..\..\..\Components\hal\incl #
+#                          ude\ -I F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-C #
+#                          C2530-2.5.1a\Projects\zstack\Samples\TestA\CC2530D #
+#                          B\..\..\..\..\..\Components\hal\target\CC2530EB\   #
+#                          -I F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530 #
+#                          -2.5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\ #
+#                          ..\..\..\..\Components\mac\include\ -I             #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\mac\high_level\ -I             #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\mac\low_level\srf04\ -I        #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\mac\low_level\srf04\single_chi #
+#                          p\ -I F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2 #
+#                          530-2.5.1a\Projects\zstack\Samples\TestA\CC2530DB\ #
+#                          ..\..\..\..\..\Components\mt\ -I                   #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\osal\include\ -I               #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\services\saddr\ -I             #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\services\sdata\ -I             #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\stack\af\ -I                   #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\stack\nwk\ -I                  #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\stack\sapi\ -I                 #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\stack\sec\ -I                  #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\stack\sys\ -I                  #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\stack\zdo\ -I                  #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\zmac\ -I                       #
+#                          F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\..\..\ #
+#                          ..\..\..\Components\zmac\f8w\ -Ohz                 #
+#                          --require_prototypes                               #
+#    List file          =  F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\Coordi #
+#                          natorEB\List\DHT11.lst                             #
+#    Object file        =  F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\TestA\CC2530DB\Coordi #
+#                          natorEB\Obj\DHT11.r51                              #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+F:\代码\代码\ZStack-CC2530-2.5.1a\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\TestA\Source\DHT11.c
+      1          /*******************************************************
+      2          文件名:DHT11.c
+      3          版本号:v1.0
+      4          创建日期:2013-10-12
+      5          作者：楼燚航
+      6          硬件描述：CC2530 P1_3连接DHT11 data引脚
+      7          主要函数描述：DHT11()函数将DHT11的温湿度数据读出，保存在Temperature和Humidity中
+      8          ********************************************************/
+      9          #include <ioCC2530.h>
+     10          
+     11          #define uint unsigned int
+     12          #define U8 unsigned char
+     13          
+     14          
+     15          #define DATA_PIN P1_3
+     16          
+     17          
+     18          U8 U8FLAG,U8temp;//温湿度定义
+     19          U8 Humidity_H,Humidity_L;//定义湿度存放变量
+     20          U8 Temperature,Humidity;//定义温度存放变量
+     21          U8 U8T_data_H,U8T_data_L,U8RH_data_H,U8RH_data_L,U8checkdata;
+     22          U8 U8T_data_H_temp,U8T_data_L_temp,U8RH_data_H_temp,U8RH_data_L_temp,U8checkdata_temp;
+     23          U8 U8comdata;
+     24          
+     25          
+     26          void Delay_10us() //10 us延时
+                      ^
+Error[Pa045]: function "Delay_10us" has no prototype
+     27          {
+     28             U8 i;
+     29             for(i=0;i<16;i++)
+     30             asm("NOP");
+     31          }
+     32          
+     33          void Delay_ms(uint Time)//n ms延时
+                      ^
+Error[Pa045]: function "Delay_ms" has no prototype
+     34          {
+     35            unsigned char i;
+     36            while(Time--)
+     37            {
+     38              for(i=0;i<100;i++)
+     39               Delay_10us();
+                      ^
+Error[Pa045]: function "Delay_10us" has no prototype
+     40            }
+     41          }
+     42          
+     43          
+     44          /***********************
+     45             温湿度传感
+     46          ***********************/
+     47          void COM(void)	// 温湿写入
+                      ^
+Error[Pa045]: function "COM" has no prototype
+     48          {
+     49              U8 i;
+     50              for(i=0;i<8;i++)
+     51              {
+     52               U8FLAG=2;
+     53               /*DATA_PIN=0;
+     54               DATA_PIN=1;*/
+     55               while((!DATA_PIN)&&U8FLAG++);
+     56               Delay_10us();
+     57               Delay_10us();
+     58               Delay_10us();
+     59               U8temp=0;
+     60               if(DATA_PIN)U8temp=1;
+     61               U8FLAG=2;
+     62               while((DATA_PIN)&&U8FLAG++);
+     63               if(U8FLAG==1)break;
+     64               U8comdata<<=1;
+     65               U8comdata|=U8temp;
+     66               }
+     67          }
+     68          
+     69          //-------------------------------- 　　
+     70          //-----湿度读取子程序 ------------ 　　
+     71          //-------------------------------- 　　
+     72          //----以下变量均为全局变量-------- 　　
+     73          //----温度高8位== U8T_data_H------ 　　
+     74          //----温度低8位== U8T_data_L------ 　　
+     75          //----湿度高8位== U8RH_data_H----- 　　
+     76          //----湿度低8位== U8RH_data_L----- 　　
+     77          //----校验 8位 == U8checkdata----- 　　
+     78          //----调用相关子程序如下---------- 　　
+     79          //---- Delay();, Delay_10us();COM(); 　　
+     80          //--------------------------------
+     81          
+     82          void DHT11(void)   //温湿传感启动
+                      ^
+Error[Pa045]: function "DHT11" has no prototype
+     83          {
+     84              P1DIR |= (1<<3);
+     85              DATA_PIN=0;
+     86              Delay_ms(19);  //主机拉低18ms
+     87              DATA_PIN=1;     //总线由上拉电阻拉高 主机延时40us
+     88              P1DIR &= ~(1<<3); //重新配置IO口方向
+     89              Delay_10us();
+     90              Delay_10us();						
+     91              Delay_10us();
+     92              Delay_10us();
+     93              //判断从机是否有低电平响应信号 如不响应则跳出，响应则向下运行
+     94               if(!DATA_PIN)
+     95               {
+     96                U8FLAG=2; //判断从机是否发出 80us 的低电平响应信号是否结束
+     97                while((!DATA_PIN)&&U8FLAG++);
+     98                U8FLAG=2;//判断从机是否发出 80us 的高电平，如发出则进入数据接收状态
+     99                while((DATA_PIN)&&U8FLAG++);
+    100                COM();//数据接收状态
+    101                U8RH_data_H_temp=U8comdata;
+    102                COM();
+    103                U8RH_data_L_temp=U8comdata;
+    104                COM();
+    105                U8T_data_H_temp=U8comdata;
+    106                COM();
+    107                U8T_data_L_temp=U8comdata;
+    108                COM();
+    109                U8checkdata_temp=U8comdata;
+    110                DATA_PIN=1;
+    111                //数据校验
+    112                U8temp=(U8T_data_H_temp+U8T_data_L_temp+U8RH_data_H_temp+U8RH_data_L_temp);
+    113                 if(U8temp==U8checkdata_temp)
+    114                {
+    115                    U8RH_data_H=U8RH_data_H_temp;
+    116                    U8RH_data_L=U8RH_data_L_temp;
+    117                    U8T_data_H=U8T_data_H_temp;
+    118                    U8T_data_L=U8T_data_L_temp;
+    119                    U8checkdata=U8checkdata_temp;
+    120                 }
+    121                 Temperature=U8T_data_H;
+    122                 Humidity=U8RH_data_H;
+    123              }
+    124              else
+    125              {
+    126                Temperature=0;
+    127                Humidity=0;
+    128              }
+    129          
+    130          }
+
+Errors: 5
+Warnings: none
